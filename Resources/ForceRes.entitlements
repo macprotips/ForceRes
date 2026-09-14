@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	ForceRes is intentionally NOT sandboxed: it drives private CoreGraphics
+	virtual-display classes at runtime (see docs/RESEARCH.md section 8),
+	which the App Sandbox does not permit. Do not add
+	com.apple.security.app-sandbox here.
+
+	No other entitlements are required: ForceRes only calls public and
+	private CoreGraphics/IOKit APIs available to any unsandboxed process
+	running as the logged-in user, and needs neither Accessibility nor
+	Screen Recording permission.
+	-->
+</dict>
+</plist>
