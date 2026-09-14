@@ -1,0 +1,80 @@
+{
+  "capturedAt": "2026-09-13T00:00:00Z",
+  "displays": [
+    {
+      "currentModeID": 1,
+      "id": "C2F1E0D9-3B4A-4C5D-8E6F-0A1B2C3D4E5F",
+      "isBuiltIn": false,
+      "isMain": false,
+      "modes": [
+        {
+          "height": 1080,
+          "id": 1,
+          "ioFlags": 33554439,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1080,
+          "pixelWidth": 1920,
+          "refreshRate": 60.0,
+          "width": 1920
+        },
+        {
+          "height": 900,
+          "id": 2,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 900,
+          "pixelWidth": 1600,
+          "refreshRate": 60.0,
+          "width": 1600
+        },
+        {
+          "height": 720,
+          "id": 3,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 720,
+          "pixelWidth": 1280,
+          "refreshRate": 60.0,
+          "width": 1280
+        },
+        {
+          "height": 768,
+          "id": 4,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 768,
+          "pixelWidth": 1024,
+          "refreshRate": 60.0,
+          "width": 1024
+        },
+        {
+          "height": 600,
+          "id": 5,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 600,
+          "pixelWidth": 800,
+          "refreshRate": 60.0,
+          "width": 800
+        },
+        {
+          "height": 540,
+          "id": 6,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1080,
+          "pixelWidth": 1920,
+          "refreshRate": 60.0,
+          "width": 960
+        }
+      ],
+      "name": "Generic 1080p Monitor",
+      "nativePixelSize": {
+        "height": 1080,
+        "width": 1920
+      }
+    }
+  ],
+  "machine": "Mac mini (M4) [synthetic]",
+  "osVersion": "27.0 [synthetic]"
+}

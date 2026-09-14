@@ -1,0 +1,245 @@
+<title>ForceRes Menu Bar Glyph</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --ink:#16181D; --muted:#5E6472; --line:#D9DCE3;
+  --accent:#2E6BE6; --grid:rgba(46,107,230,.16); --gridStrong:rgba(46,107,230,.42);
+  --code:#EEF0F4;
+  --sans:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141519; --surface:#1D1F25; --ink:#EDEEF2; --muted:#9BA1AD; --line:#2C2F37;
+  --accent:#6B97F0; --grid:rgba(107,151,240,.16); --gridStrong:rgba(107,151,240,.5); --code:#22252C;
+}}
+:root[data-theme="dark"]{
+  --bg:#141519; --surface:#1D1F25; --ink:#EDEEF2; --muted:#9BA1AD; --line:#2C2F37;
+  --accent:#6B97F0; --grid:rgba(107,151,240,.16); --gridStrong:rgba(107,151,240,.5); --code:#22252C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;padding-block:48px 80px;padding-inline:clamp(16px,5vw,48px);-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:64px}
+h1,h2,h3{text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.1}
+h2{font-size:22px}
+p{margin:0;max-width:62ch}
+.lede{font-size:18px;color:var(--muted);max-width:56ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+header{display:flex;flex-direction:column;gap:14px}
+section{display:flex;flex-direction:column;gap:20px}
+.muted{color:var(--muted)}
+.mono{font-family:var(--mono);font-size:13px}
+
+/* menu bar strips */
+.bars{display:flex;flex-direction:column;gap:14px}
+.desk{position:relative;border-radius:10px;overflow:hidden;height:88px;border:1px solid var(--line)}
+.desk.light{background:linear-gradient(115deg,#8fb3ff 0%,#c9d8ff 40%,#f2c9d6 100%)}
+.desk.dark{background:linear-gradient(115deg,#0c1b3a 0%,#1f2f5c 45%,#4a2a5c 100%)}
+.bar{position:absolute;top:0;left:0;right:0;height:24px;display:flex;align-items:center;justify-content:flex-end;gap:0;padding-right:10px;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",var(--sans);font-size:13px;font-weight:500;letter-spacing:-.01em}
+.desk.light .bar{background:rgba(236,237,241,.72);backdrop-filter:blur(30px);color:#1d1d1f}
+.desk.dark .bar{background:rgba(28,29,34,.62);backdrop-filter:blur(30px);color:#fff}
+.bar .app{position:absolute;left:12px;display:flex;gap:16px;align-items:center}
+.bar .app b{font-weight:700}
+.item{height:22px;padding:0 6px;display:flex;align-items:center;border-radius:5px;margin-left:2px}
+.item.open{background:rgba(0,0,0,.09)}
+.desk.dark .item.open{background:rgba(255,255,255,.16)}
+.item img,.item svg{display:block;width:18px;height:18px}
+.desk.dark .item img{filter:invert(1)}
+.desk.dark .sys{fill:#fff}
+.sys{fill:#1d1d1f}
+.clock{padding-left:8px;font-variant-numeric:tabular-nums}
+.caption{font-family:var(--mono);font-size:12px;color:var(--muted);position:absolute;left:12px;bottom:10px}
+
+/* construction */
+.construct{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:36px;align-items:start}
+@media (max-width:720px){.construct{grid-template-columns:1fr}}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.fig svg{width:100%;height:auto;display:block}
+.notes{display:flex;flex-direction:column;gap:14px}
+.notes dl{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;font-size:15px}
+.notes dt{font-family:var(--mono);font-size:13px;color:var(--accent);white-space:nowrap;padding-top:2px}
+.notes dd{margin:0}
+
+/* variants */
+.variants{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media (max-width:600px){.variants{grid-template-columns:1fr}}
+.variant{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.variant .row{display:flex;align-items:center;gap:28px;padding:22px 20px}
+.variant .row.dk{background:#1c1d22}
+.variant .row.dk img{filter:invert(1)}
+.variant .size{display:flex;flex-direction:column;align-items:center;gap:8px}
+.variant .size span{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.variant .row.dk .size span{color:#8d93a0}
+.variant .head{padding:14px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline}
+.variant .head h3{font-size:16px}
+.badge{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.variant p{padding:14px 20px 18px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
+img.px{image-rendering:pixelated}
+
+/* files + code */
+.files{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:720px){.files{grid-template-columns:1fr}}
+.tree{font-family:var(--mono);font-size:13px;line-height:1.7;background:var(--code);border-radius:8px;padding:16px 18px;overflow-x:auto;white-space:pre;margin:0}
+pre.code{font-family:var(--mono);font-size:13px;line-height:1.6;background:var(--code);border-radius:8px;padding:16px 18px;overflow-x:auto;margin:0}
+.tree .d{color:var(--accent)}
+.tree .c{color:var(--muted)}
+pre.code .k{color:var(--accent)}
+pre.code .c{color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">ForceRes · macOS status item</div>
+    <h1>Display glyph with resolution brackets</h1>
+    <p class="lede">Template image on an 18 pt grid. Strokes are 1 px and sit on half-pixels, so the 1x render is sharp. The brackets in opposite corners stand for the resolution being set. No second colour, no badge.</p>
+  </header>
+
+  <section>
+    <h2>In the bar, at actual size</h2>
+    <div class="bars">
+      <div class="desk light">
+        <div class="bar">
+          <div class="app"><span>&#63743;</span><b>Finder</b><span>File</span><span>Edit</span><span>View</span></div>
+          <div class="item"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" alt="ForceRes"></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M9 3.2c2.9 0 5.5 1.1 7.4 2.9l-1.2 1.3A8.6 8.6 0 0 0 9 5a8.6 8.6 0 0 0-6.2 2.4L1.6 6.1A10.6 10.6 0 0 1 9 3.2zm0 3.7c2 0 3.8.8 5.1 2.1l-1.2 1.3A5.5 5.5 0 0 0 9 8.8a5.5 5.5 0 0 0-3.9 1.5L3.9 9A7.3 7.3 0 0 1 9 6.9zm0 3.7c1 0 1.9.4 2.6 1.1L9 14.5l-2.6-2.8c.7-.7 1.6-1.1 2.6-1.1z"/></svg></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h10A1.5 1.5 0 0 1 15 5.5v1h.6c.5 0 .9.4.9.9v3.2c0 .5-.4.9-.9.9H15v1a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 2 12.5v-7zm1.2.2v6.6c0 .3.2.5.5.5h9.6c.3 0 .5-.2.5-.5V5.7a.5.5 0 0 0-.5-.5H3.7a.5.5 0 0 0-.5.5zM4 6h7.5v6H4z"/></svg></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M2.5 5.2A2 2 0 0 1 4.5 3.2h9a2 2 0 0 1 2 2v2.1a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-2.1zm2 2.6a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM2.5 10.7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v2.1a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-2.1zm11 2.6a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1z"/></svg></div>
+          <div class="clock">Mon Sep 14&nbsp;&nbsp;9:41 AM</div>
+        </div>
+        <div class="caption">light · idle</div>
+      </div>
+      <div class="desk light">
+        <div class="bar">
+          <div class="app"><span>&#63743;</span><b>Finder</b><span>File</span><span>Edit</span><span>View</span></div>
+          <div class="item open"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" alt="ForceRes, menu open"></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M9 3.2c2.9 0 5.5 1.1 7.4 2.9l-1.2 1.3A8.6 8.6 0 0 0 9 5a8.6 8.6 0 0 0-6.2 2.4L1.6 6.1A10.6 10.6 0 0 1 9 3.2zm0 3.7c2 0 3.8.8 5.1 2.1l-1.2 1.3A5.5 5.5 0 0 0 9 8.8a5.5 5.5 0 0 0-3.9 1.5L3.9 9A7.3 7.3 0 0 1 9 6.9zm0 3.7c1 0 1.9.4 2.6 1.1L9 14.5l-2.6-2.8c.7-.7 1.6-1.1 2.6-1.1z"/></svg></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h10A1.5 1.5 0 0 1 15 5.5v1h.6c.5 0 .9.4.9.9v3.2c0 .5-.4.9-.9.9H15v1a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 2 12.5v-7zm1.2.2v6.6c0 .3.2.5.5.5h9.6c.3 0 .5-.2.5-.5V5.7a.5.5 0 0 0-.5-.5H3.7a.5.5 0 0 0-.5.5zM4 6h7.5v6H4z"/></svg></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M2.5 5.2A2 2 0 0 1 4.5 3.2h9a2 2 0 0 1 2 2v2.1a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-2.1zm2 2.6a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM2.5 10.7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v2.1a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-2.1zm11 2.6a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1z"/></svg></div>
+          <div class="clock">Mon Sep 14&nbsp;&nbsp;9:41 AM</div>
+        </div>
+        <div class="caption">light · menu open</div>
+      </div>
+      <div class="desk dark">
+        <div class="bar">
+          <div class="app"><span>&#63743;</span><b>Finder</b><span>File</span><span>Edit</span><span>View</span></div>
+          <div class="item"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" alt="ForceRes"></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M9 3.2c2.9 0 5.5 1.1 7.4 2.9l-1.2 1.3A8.6 8.6 0 0 0 9 5a8.6 8.6 0 0 0-6.2 2.4L1.6 6.1A10.6 10.6 0 0 1 9 3.2zm0 3.7c2 0 3.8.8 5.1 2.1l-1.2 1.3A5.5 5.5 0 0 0 9 8.8a5.5 5.5 0 0 0-3.9 1.5L3.9 9A7.3 7.3 0 0 1 9 6.9zm0 3.7c1 0 1.9.4 2.6 1.1L9 14.5l-2.6-2.8c.7-.7 1.6-1.1 2.6-1.1z"/></svg></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h10A1.5 1.5 0 0 1 15 5.5v1h.6c.5 0 .9.4.9.9v3.2c0 .5-.4.9-.9.9H15v1a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 2 12.5v-7zm1.2.2v6.6c0 .3.2.5.5.5h9.6c.3 0 .5-.2.5-.5V5.7a.5.5 0 0 0-.5-.5H3.7a.5.5 0 0 0-.5.5zM4 6h7.5v6H4z"/></svg></div>
+          <div class="item"><svg viewBox="0 0 18 18" class="sys"><path d="M2.5 5.2A2 2 0 0 1 4.5 3.2h9a2 2 0 0 1 2 2v2.1a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-2.1zm2 2.6a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM2.5 10.7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v2.1a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-2.1zm11 2.6a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1z"/></svg></div>
+          <div class="clock">Mon Sep 14&nbsp;&nbsp;9:41 AM</div>
+        </div>
+        <div class="caption">dark · idle</div>
+      </div>
+    </div>
+    <p class="muted">macOS tints a template image itself, so one asset covers light, dark, the open-menu highlight and reduced transparency. The Wi-Fi, battery and Control Center glyphs are stand-ins for checking weight and optical size.</p>
+  </section>
+
+  <section>
+    <h2>Construction</h2>
+    <div class="construct">
+      <div class="fig">
+        <svg viewBox="-0.5 -0.5 19 19" xmlns="http://www.w3.org/2000/svg" aria-label="The glyph drawn on its 18 point grid">
+          <defs>
+            <pattern id="g" width="1" height="1" patternUnits="userSpaceOnUse">
+              <path d="M1 0H0V1" fill="none" stroke="var(--grid)" stroke-width="0.04"/>
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="18" height="18" fill="url(#g)"/>
+          <rect x="0" y="0" width="18" height="18" fill="none" stroke="var(--gridStrong)" stroke-width="0.06"/>
+          <!-- centre axes -->
+          <path d="M9 0V18 M0 7.5H18" stroke="var(--gridStrong)" stroke-width="0.04" stroke-dasharray="0.25 0.2" fill="none"/>
+          <!-- glyph -->
+          <g fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter">
+            <rect x="1.5" y="2.5" width="15" height="10" rx="2"/>
+            <path d="M9 13V15" stroke-width="2"/>
+            <path d="M5 15.5H13"/>
+            <path d="M4.5 8.5V5.5H7.5"/>
+            <path d="M13.5 6.5V9.5H10.5"/>
+          </g>
+          <!-- half-pixel anchors -->
+          <g fill="var(--accent)">
+            <circle cx="1.5" cy="2.5" r="0.16"/><circle cx="16.5" cy="12.5" r="0.16"/>
+            <circle cx="4.5" cy="5.5" r="0.16"/><circle cx="13.5" cy="9.5" r="0.16"/>
+            <circle cx="5" cy="15.5" r="0.16"/><circle cx="13" cy="15.5" r="0.16"/>
+          </g>
+        </svg>
+      </div>
+      <div class="notes">
+        <p>The display is the noun. The brackets are the verb: two corners of a selection, the same idiom as a resize handle, so the glyph says resolution rather than monitor.</p>
+        <dl>
+          <dt>18 × 18 pt</dt><dd>Apple’s status-item grid. Ink spans 16 × 14 with a 1 pt safety margin, matching the optical size of Wi-Fi and battery.</dd>
+          <dt>screen 15 × 10</dt><dd>3 : 2 rounded rectangle, radius 2. Stroke centred on x 1.5 and y 2.5 so it fills whole pixels at 1x.</dd>
+          <dt>brackets 3 px</dt><dd>Three-pixel arms, one pixel thick, square ends and mitred corners. Set 2 px in from the screen edge and mirrored about the screen centre (9, 7.5). The same geometry is cut out of the solid weight.</dd>
+          <dt>neck 2 px</dt><dd>The glyph is centred on x 9, a whole pixel. A 1 px neck there would straddle two columns and blur, so the neck is 2 px wide and lands cleanly on columns 8 and 9.</dd>
+          <dt>base 8 px</dt><dd>1 px line with square ends on row 15, from column 5 to 12. Keeps the silhouette from collapsing into a plain rectangle at 1x.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Weights</h2>
+    <div class="variants">
+      <div class="variant">
+        <div class="head"><h3>Outline</h3><span class="badge">Recommended</span></div>
+        <div class="row">
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAyUlEQVQ4Ec1SSw4CMQitn407bzweRxMP4BF0NYfwAO5dqO+hECDphHGjJK/l86DQtrV/lS0aOwN34DkTzG1LLpAbcAU2wKKINXhH4ASYsIuVWXWFOZzChIVUHlB0vEGdE7vPlUTlhoA60+4PCHxveD3lm+k5nMAu2xhQdt4o6HwcE3+COZMywCaPkC4+8ZDLm//21aSQ/qMRhQ4zi/HgPRCEv1Pbru6c4gLIzw7VOoYW7oTfbh1tklQJhqdzCXKBzs5qLy/zfmi/AEI8OxAn6lCrAAAAAElFTkSuQmCC" width="18" height="18" alt=""><span>1x</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" width="18" height="18" alt=""><span>2x</span></div>
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAyUlEQVQ4Ec1SSw4CMQitn407bzweRxMP4BF0NYfwAO5dqO+hECDphHGjJK/l86DQtrV/lS0aOwN34DkTzG1LLpAbcAU2wKKINXhH4ASYsIuVWXWFOZzChIVUHlB0vEGdE7vPlUTlhoA60+4PCHxveD3lm+k5nMAu2xhQdt4o6HwcE3+COZMywCaPkC4+8ZDLm//21aSQ/qMRhQ4zi/HgPRCEv1Pbru6c4gLIzw7VOoYW7oTfbh1tklQJhqdzCXKBzs5qLy/zfmi/AEI8OxAn6lCrAAAAAElFTkSuQmCC" width="72" height="72" alt=""><span>1x · 4×</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" width="72" height="72" alt=""><span>2x · 4×</span></div>
+        </div>
+        <div class="row dk">
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAyUlEQVQ4Ec1SSw4CMQitn407bzweRxMP4BF0NYfwAO5dqO+hECDphHGjJK/l86DQtrV/lS0aOwN34DkTzG1LLpAbcAU2wKKINXhH4ASYsIuVWXWFOZzChIVUHlB0vEGdE7vPlUTlhoA60+4PCHxveD3lm+k5nMAu2xhQdt4o6HwcE3+COZMywCaPkC4+8ZDLm//21aSQ/qMRhQ4zi/HgPRCEv1Pbru6c4gLIzw7VOoYW7oTfbh1tklQJhqdzCXKBzs5qLy/zfmi/AEI8OxAn6lCrAAAAAElFTkSuQmCC" width="18" height="18" alt=""><span>1x</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" width="18" height="18" alt=""><span>2x</span></div>
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAyUlEQVQ4Ec1SSw4CMQitn407bzweRxMP4BF0NYfwAO5dqO+hECDphHGjJK/l86DQtrV/lS0aOwN34DkTzG1LLpAbcAU2wKKINXhH4ASYsIuVWXWFOZzChIVUHlB0vEGdE7vPlUTlhoA60+4PCHxveD3lm+k5nMAu2xhQdt4o6HwcE3+COZMywCaPkC4+8ZDLm//21aSQ/qMRhQ4zi/HgPRCEv1Pbru6c4gLIzw7VOoYW7oTfbh1tklQJhqdzCXKBzs5qLy/zfmi/AEI8OxAn6lCrAAAAAElFTkSuQmCC" width="72" height="72" alt=""><span>1x · 4×</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAABG0lEQVRYCe2WwQ3CMAxFA2IBBmMFVmALxmIBxoELJ/CXYslNm9RpE5ODLVkJSur3+XXbhODhDrR34EIlH5Qvym+nRG0wwCrGnVZ7icjVBXMxoBYXfShvlGfKXoHaYIAF5qJTsBCL2GgVYIEJ9iy4Z3o6k0LBgiCwZ4EFpHVMuCcFvSTyoLi+asuxarfBZo1DLKO5G1xYjpYOTXpFipBzS0GSm527oKw1cUHT1CbNzEI1gnhvzVh6dxXrDNdDvRzafJulQ+/opfXHFVhmBynoGQVd42gxMIvZE+ZwBzSoG+oIy3bBKZzg+MDG36CWY/aQv/lpYPU0pu+cXTVlUwvG/6YuaM37mvud9spa7XRdxRrulqX/wn+7A7UO/AAIbo+llrHW6gAAAABJRU5ErkJggg==" width="72" height="72" alt=""><span>2x · 4×</span></div>
+        </div>
+        <p>Matches the weight of most third-party status items and keeps the brackets open at 1x. Ship this one.</p>
+      </div>
+      <div class="variant">
+        <div class="head"><h3>Solid</h3><span class="badge">Alternate</span></div>
+        <div class="row">
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAnUlEQVQ4EdVS2w2AIAwEZQ73n8IPx3AWjfYMRwCBFP3RJk2fd7RaY74qkww2i26ih1LRCwywQZDQEuR9wBrrqcA+er/X7AJwJMIrFOYQx3nWS9a6UraDIMCH4PU58dQXskSkXSd5urZa0hQFt0lY40T48hqJfz37LyyJFmYf2ASL68Rhvb7s1iBcp9VjuFqzSVOsEa0CzidhjNoP5ARk4z76ue2SugAAAABJRU5ErkJggg==" width="18" height="18" alt=""><span>1x</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAAA/UlEQVRYCe1W0Q7CIAxE46N+mr/lZ+1F3/wcfdfeYpemoRtMC5jRhFAYu7sd3UYIPboDv3fgTJADtQe1l1MDNjjANRsXuuolwsIFZzSg1rrJez7qFCz0JrbwwT3GjhPqsa9HMS6ZPonsBEIpCOprxqjlkKBAipbLXR5gLxlayFMcYp0ujjA49805VFIQatGqRzYolBQ0kc4lKTVUpHZY5F86xOJz+8V6iQFuyqFVtScdwg+uVkzcUtC9lhrijXI3d0CDQU0dYXnH4FS1Q/6qbwUr//T6bfoKUxa14qkz7IKWfM9x6EZgqBfdNIe+jvFVL7LGOYIsjD7fHWjKgTeIJ+EvLP5bPAAAAABJRU5ErkJggg==" width="18" height="18" alt=""><span>2x</span></div>
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAnUlEQVQ4EdVS2w2AIAwEZQ73n8IPx3AWjfYMRwCBFP3RJk2fd7RaY74qkww2i26ih1LRCwywQZDQEuR9wBrrqcA+er/X7AJwJMIrFOYQx3nWS9a6UraDIMCH4PU58dQXskSkXSd5urZa0hQFt0lY40T48hqJfz37LyyJFmYf2ASL68Rhvb7s1iBcp9VjuFqzSVOsEa0CzidhjNoP5ARk4z76ue2SugAAAABJRU5ErkJggg==" width="72" height="72" alt=""><span>1x · 4×</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAAA/UlEQVRYCe1W0Q7CIAxE46N+mr/lZ+1F3/wcfdfeYpemoRtMC5jRhFAYu7sd3UYIPboDv3fgTJADtQe1l1MDNjjANRsXuuolwsIFZzSg1rrJez7qFCz0JrbwwT3GjhPqsa9HMS6ZPonsBEIpCOprxqjlkKBAipbLXR5gLxlayFMcYp0ujjA49805VFIQatGqRzYolBQ0kc4lKTVUpHZY5F86xOJz+8V6iQFuyqFVtScdwg+uVkzcUtC9lhrijXI3d0CDQU0dYXnH4FS1Q/6qbwUr//T6bfoKUxa14qkz7IKWfM9x6EZgqBfdNIe+jvFVL7LGOYIsjD7fHWjKgTeIJ+EvLP5bPAAAAABJRU5ErkJggg==" width="72" height="72" alt=""><span>2x · 4×</span></div>
+        </div>
+        <div class="row dk">
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAnUlEQVQ4EdVS2w2AIAwEZQ73n8IPx3AWjfYMRwCBFP3RJk2fd7RaY74qkww2i26ih1LRCwywQZDQEuR9wBrrqcA+er/X7AJwJMIrFOYQx3nWS9a6UraDIMCH4PU58dQXskSkXSd5urZa0hQFt0lY40T48hqJfz37LyyJFmYf2ASL68Rhvb7s1iBcp9VjuFqzSVOsEa0CzidhjNoP5ARk4z76ue2SugAAAABJRU5ErkJggg==" width="18" height="18" alt=""><span>1x</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAAA/UlEQVRYCe1W0Q7CIAxE46N+mr/lZ+1F3/wcfdfeYpemoRtMC5jRhFAYu7sd3UYIPboDv3fgTJADtQe1l1MDNjjANRsXuuolwsIFZzSg1rrJez7qFCz0JrbwwT3GjhPqsa9HMS6ZPonsBEIpCOprxqjlkKBAipbLXR5gLxlayFMcYp0ujjA49805VFIQatGqRzYolBQ0kc4lKTVUpHZY5F86xOJz+8V6iQFuyqFVtScdwg+uVkzcUtC9lhrijXI3d0CDQU0dYXnH4FS1Q/6qbwUr//T6bfoKUxa14qkz7IKWfM9x6EZgqBfdNIe+jvFVL7LGOYIsjD7fHWjKgTeIJ+EvLP5bPAAAAABJRU5ErkJggg==" width="18" height="18" alt=""><span>2x</span></div>
+          <div class="size"><img class="px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAAC5YZBvAAAAnUlEQVQ4EdVS2w2AIAwEZQ73n8IPx3AWjfYMRwCBFP3RJk2fd7RaY74qkww2i26ih1LRCwywQZDQEuR9wBrrqcA+er/X7AJwJMIrFOYQx3nWS9a6UraDIMCH4PU58dQXskSkXSd5urZa0hQFt0lY40T48hqJfz37LyyJFmYf2ASL68Rhvb7s1iBcp9VjuFqzSVOsEa0CzidhjNoP5ARk4z76ue2SugAAAABJRU5ErkJggg==" width="72" height="72" alt=""><span>1x · 4×</span></div>
+          <div class="size"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAJxsHGAAAA/UlEQVRYCe1W0Q7CIAxE46N+mr/lZ+1F3/wcfdfeYpemoRtMC5jRhFAYu7sd3UYIPboDv3fgTJADtQe1l1MDNjjANRsXuuolwsIFZzSg1rrJez7qFCz0JrbwwT3GjhPqsa9HMS6ZPonsBEIpCOprxqjlkKBAipbLXR5gLxlayFMcYp0ujjA49805VFIQatGqRzYolBQ0kc4lKTVUpHZY5F86xOJz+8V6iQFuyqFVtScdwg+uVkzcUtC9lhrijXI3d0CDQU0dYXnH4FS1Q/6qbwUr//T6bfoKUxa14qkz7IKWfM9x6EZgqBfdNIe+jvFVL7LGOYIsjD7fHWjKgTeIJ+EvLP5bPAAAAABJRU5ErkJggg==" width="72" height="72" alt=""><span>2x · 4×</span></div>
+        </div>
+        <p>Same construction, filled, brackets cut out on whole pixels. Heavier and closer to Apple’s own filled glyphs. Works as an active state when a forced resolution is live.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Files and integration</h2>
+    <div class="files">
+      <pre class="tree"><span class="d">ForceRes-MenuBarIcon/</span>
+├── MenuBarIcon.svg            <span class="c">source, 18 × 18</span>
+├── MenuBarIcon-Solid.svg
+├── <span class="d">MenuBarIcon.imageset/</span>      <span class="c">→ Assets.xcassets</span>
+│   ├── Contents.json          <span class="c">template-rendering-intent</span>
+│   ├── MenuBarIcon.png        <span class="c">18 px</span>
+│   ├── MenuBarIcon@2x.png     <span class="c">36 px</span>
+│   └── MenuBarIcon@3x.png     <span class="c">54 px</span>
+└── <span class="d">MenuBarIcon-Solid.imageset/</span>
+    └── …</pre>
+      <pre class="code"><span class="c">// AppKit</span>
+<span class="k">let</span> item = NSStatusBar.system
+    .statusItem(withLength: NSStatusItem.squareLength)
+<span class="k">let</span> glyph = NSImage(named: <span class="k">"MenuBarIcon"</span>)!
+glyph.isTemplate = <span class="k">true</span>   <span class="c">// catalog sets this too</span>
+item.button?.image = glyph
+
+<span class="c">// SwiftUI</span>
+MenuBarExtra(<span class="k">"ForceRes"</span>, image: <span class="k">"MenuBarIcon"</span>) {
+    <span class="c">// resolution menu</span>
+}</pre>
+    </div>
+    <p class="muted">Both imagesets are marked as template images in the catalog. Keep the SVGs as the source and re-rasterise from them if the grid changes.</p>
+  </section>
+</div>

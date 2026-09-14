@@ -1,0 +1,180 @@
+{
+  "capturedAt": "2026-09-13T00:00:00Z",
+  "displays": [
+    {
+      "currentModeID": 8,
+      "id": "8A0B7C25-5F4E-4D3B-9A2C-1E6F7B8D9C01",
+      "isBuiltIn": true,
+      "isMain": true,
+      "modes": [
+        {
+          "height": 480,
+          "id": 0,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 480,
+          "pixelWidth": 640,
+          "refreshRate": 60.0,
+          "width": 640
+        },
+        {
+          "height": 450,
+          "id": 1,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 900,
+          "pixelWidth": 1440,
+          "refreshRate": 60.0,
+          "width": 720
+        },
+        {
+          "height": 600,
+          "id": 2,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 600,
+          "pixelWidth": 800,
+          "refreshRate": 60.0,
+          "width": 800
+        },
+        {
+          "height": 525,
+          "id": 3,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1050,
+          "pixelWidth": 1650,
+          "refreshRate": 60.0,
+          "width": 825
+        },
+        {
+          "height": 525,
+          "id": 4,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 525,
+          "pixelWidth": 840,
+          "refreshRate": 60.0,
+          "width": 840
+        },
+        {
+          "height": 640,
+          "id": 5,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1280,
+          "pixelWidth": 2048,
+          "refreshRate": 60.0,
+          "width": 1024
+        },
+        {
+          "height": 768,
+          "id": 6,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 768,
+          "pixelWidth": 1024,
+          "refreshRate": 60.0,
+          "width": 1024
+        },
+        {
+          "height": 720,
+          "id": 7,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 720,
+          "pixelWidth": 1152,
+          "refreshRate": 60.0,
+          "width": 1152
+        },
+        {
+          "height": 800,
+          "id": 8,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1600,
+          "pixelWidth": 2560,
+          "refreshRate": 60.0,
+          "width": 1280
+        },
+        {
+          "height": 800,
+          "id": 9,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 800,
+          "pixelWidth": 1280,
+          "refreshRate": 60.0,
+          "width": 1280
+        },
+        {
+          "height": 900,
+          "id": 10,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1800,
+          "pixelWidth": 2880,
+          "refreshRate": 60.0,
+          "width": 1440
+        },
+        {
+          "height": 900,
+          "id": 11,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 900,
+          "pixelWidth": 1440,
+          "refreshRate": 60.0,
+          "width": 1440
+        },
+        {
+          "height": 1050,
+          "id": 12,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1050,
+          "pixelWidth": 1650,
+          "refreshRate": 60.0,
+          "width": 1650
+        },
+        {
+          "height": 1050,
+          "id": 13,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 2100,
+          "pixelWidth": 3360,
+          "refreshRate": 60.0,
+          "width": 1680
+        },
+        {
+          "height": 1280,
+          "id": 14,
+          "ioFlags": 3,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1280,
+          "pixelWidth": 2048,
+          "refreshRate": 60.0,
+          "width": 2048
+        },
+        {
+          "height": 1600,
+          "id": 15,
+          "ioFlags": 33554435,
+          "isUsableForDesktopGUI": true,
+          "pixelHeight": 1600,
+          "pixelWidth": 2560,
+          "refreshRate": 60.0,
+          "width": 2560
+        }
+      ],
+      "name": "Built-in Retina Display",
+      "nativePixelSize": {
+        "height": 1600,
+        "width": 2560
+      }
+    }
+  ],
+  "machine": "MacBook Air (M1, 2020) [synthetic]",
+  "osVersion": "15.0 [synthetic]"
+}

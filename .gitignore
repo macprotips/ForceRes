@@ -1,0 +1,15 @@
+.DS_Store
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.swiftpm/xcode/
+*.dSYM
+/build/
+/dist/
+/dist/*.zip
+Resources/icon-build/
+/.certs/
+
+# local script overrides
+Scripts/local.env

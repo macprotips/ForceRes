@@ -1,0 +1,245 @@
+Display 3 main=1 builtin=0 pixels=2560x1440
+ current: 2560x1440 px=5120x2880 240.0Hz gui=true flags=3
+ 242 modes (with duplicates flag):
+  800x600 HiDPI(px 1600x1200) @240.0Hz gui=true flags=0x3 id=0
+  800x600 HiDPI(px 1600x1200) @240.0Hz gui=true flags=0x3 id=1
+  800x600 HiDPI(px 1600x1200) @120.0Hz gui=true flags=0x3 id=2
+  800x600 @75.0Hz gui=true flags=0x3 id=3
+  800x600 @75.0Hz gui=true flags=0x3 id=4
+  800x600 @72.0Hz gui=true flags=0x3 id=5
+  800x600 HiDPI(px 1600x1200) @60.0Hz gui=true flags=0x3 id=6
+  800x600 @60.0Hz gui=true flags=0x3 id=7
+  800x600 HiDPI(px 1600x1200) @30.0Hz gui=true flags=0x3 id=8
+  840x525 HiDPI(px 1680x1050) @60.0Hz gui=true flags=0x3 id=9
+  840x525 HiDPI(px 1680x1050) @60.0Hz gui=true flags=0x3 id=10
+  960x540 HiDPI(px 1920x1080) @240.0Hz gui=true flags=0x3 id=11
+  960x540 HiDPI(px 1920x1080) @240.0Hz gui=true flags=0x3 id=12
+  960x540 HiDPI(px 1920x1080) @120.0Hz gui=true flags=0x3 id=13
+  960x540 HiDPI(px 1920x1080) @60.0Hz gui=true flags=0x3 id=14
+  960x540 HiDPI(px 1920x1080) @30.0Hz gui=true flags=0x3 id=15
+  1024x576 HiDPI(px 2048x1152) @240.0Hz gui=true flags=0x3 id=16
+  1024x576 HiDPI(px 2048x1152) @240.0Hz gui=true flags=0x3 id=17
+  1024x576 @240.0Hz gui=true flags=0x3 id=18
+  1024x576 @240.0Hz gui=true flags=0x3 id=19
+  1024x576 HiDPI(px 2048x1152) @120.0Hz gui=true flags=0x3 id=20
+  1024x576 @120.0Hz gui=true flags=0x3 id=21
+  1024x576 HiDPI(px 2048x1152) @60.0Hz gui=true flags=0x3 id=22
+  1024x576 @60.0Hz gui=true flags=0x3 id=23
+  1024x576 HiDPI(px 2048x1152) @30.0Hz gui=true flags=0x3 id=24
+  1024x576 @30.0Hz gui=true flags=0x3 id=25
+  1024x768 @240.0Hz gui=true flags=0x3 id=26
+  1024x768 @240.0Hz gui=true flags=0x3 id=27
+  1024x768 @120.0Hz gui=true flags=0x3 id=28
+  1024x768 @75.0Hz gui=true flags=0x3 id=29
+  1024x768 @75.0Hz gui=true flags=0x3 id=30
+  1024x768 @70.0Hz gui=true flags=0x3 id=31
+  1024x768 @60.0Hz gui=true flags=0x3 id=32
+  1024x768 @30.0Hz gui=true flags=0x3 id=33
+  1152x648 HiDPI(px 2304x1296) @240.0Hz gui=true flags=0x3 id=34
+  1152x648 HiDPI(px 2304x1296) @240.0Hz gui=true flags=0x3 id=35
+  1152x648 HiDPI(px 2304x1296) @120.0Hz gui=true flags=0x3 id=36
+  1152x648 HiDPI(px 2304x1296) @60.0Hz gui=true flags=0x3 id=37
+  1152x648 HiDPI(px 2304x1296) @30.0Hz gui=true flags=0x3 id=38
+  1152x864 @75.0Hz gui=true flags=0x3 id=39
+  1152x864 @75.0Hz gui=true flags=0x3 id=40
+  1280x720 HiDPI(px 2560x1440) @240.0Hz gui=true flags=0x3 id=41
+  1280x720 @240.0Hz gui=true flags=0x3 id=42
+  1280x720 @240.0Hz gui=true flags=0x3 id=43
+  1280x720 HiDPI(px 2560x1440) @240.0Hz gui=true flags=0x3 id=44
+  1280x720 HiDPI(px 2560x1440) @120.0Hz gui=true flags=0x3 id=45
+  1280x720 @120.0Hz gui=true flags=0x3 id=46
+  1280x720 @60.0Hz gui=true flags=0x3 id=47
+  1280x720 @60.0Hz gui=true flags=0x3 id=48
+  1280x720 HiDPI(px 2560x1440) @60.0Hz gui=true flags=0x3 id=49
+  1280x720 HiDPI(px 2560x1440) @30.0Hz gui=true flags=0x3 id=50
+  1280x720 @30.0Hz gui=true flags=0x3 id=51
+  1280x800 @60.0Hz gui=true flags=0x3 id=52
+  1280x800 @60.0Hz gui=true flags=0x3 id=53
+  1280x960 @240.0Hz gui=true flags=0x3 id=54
+  1280x960 @240.0Hz gui=true flags=0x3 id=55
+  1280x960 @120.0Hz gui=true flags=0x3 id=56
+  1280x960 @60.0Hz gui=true flags=0x3 id=57
+  1280x960 @30.0Hz gui=true flags=0x3 id=58
+  1280x1024 @75.0Hz gui=true flags=0x3 id=59
+  1280x1024 @75.0Hz gui=true flags=0x3 id=60
+  1280x1024 @60.0Hz gui=true flags=0x3 id=61
+  1344x756 @240.0Hz gui=true flags=0x3 id=62
+  1344x756 @240.0Hz gui=true flags=0x3 id=63
+  1344x756 @120.0Hz gui=true flags=0x3 id=64
+  1344x756 @60.0Hz gui=true flags=0x3 id=65
+  1344x756 @30.0Hz gui=true flags=0x3 id=66
+  1344x1008 @240.0Hz gui=true flags=0x3 id=67
+  1344x1008 @240.0Hz gui=true flags=0x3 id=68
+  1344x1008 @120.0Hz gui=true flags=0x3 id=69
+  1344x1008 @60.0Hz gui=true flags=0x3 id=70
+  1344x1008 @30.0Hz gui=true flags=0x3 id=71
+  1440x900 @60.0Hz gui=true flags=0x3 id=72
+  1440x900 @60.0Hz gui=true flags=0x3 id=73
+  1504x846 HiDPI(px 3008x1692) @240.0Hz gui=true flags=0x3 id=74
+  1504x846 HiDPI(px 3008x1692) @240.0Hz gui=true flags=0x3 id=75
+  1504x846 HiDPI(px 3008x1692) @120.0Hz gui=true flags=0x3 id=76
+  1504x846 HiDPI(px 3008x1692) @60.0Hz gui=true flags=0x3 id=77
+  1504x846 HiDPI(px 3008x1692) @30.0Hz gui=true flags=0x3 id=78
+  1600x900 @240.0Hz gui=true flags=0x3 id=79
+  1600x900 @240.0Hz gui=true flags=0x3 id=80
+  1600x900 HiDPI(px 3200x1800) @240.0Hz gui=true flags=0x3 id=81
+  1600x900 HiDPI(px 3200x1800) @240.0Hz gui=true flags=0x3 id=82
+  1600x900 @120.0Hz gui=true flags=0x3 id=83
+  1600x900 HiDPI(px 3200x1800) @120.0Hz gui=true flags=0x3 id=84
+  1600x900 @60.0Hz gui=true flags=0x3 id=85
+  1600x900 @60.0Hz gui=true flags=0x3 id=86
+  1600x900 HiDPI(px 3200x1800) @60.0Hz gui=true flags=0x3 id=87
+  1600x900 @30.0Hz gui=true flags=0x3 id=88
+  1600x900 HiDPI(px 3200x1800) @30.0Hz gui=true flags=0x3 id=89
+  1600x1200 @240.0Hz gui=true flags=0x3 id=90
+  1600x1200 @240.0Hz gui=true flags=0x3 id=91
+  1600x1200 @120.0Hz gui=true flags=0x3 id=92
+  1600x1200 @60.0Hz gui=true flags=0x3 id=93
+  1600x1200 @30.0Hz gui=true flags=0x3 id=94
+  1680x945 HiDPI(px 3360x1890) @240.0Hz gui=true flags=0x3 id=95
+  1680x945 HiDPI(px 3360x1890) @240.0Hz gui=true flags=0x3 id=96
+  1680x945 HiDPI(px 3360x1890) @120.0Hz gui=true flags=0x3 id=97
+  1680x945 HiDPI(px 3360x1890) @60.0Hz gui=true flags=0x3 id=98
+  1680x945 HiDPI(px 3360x1890) @30.0Hz gui=true flags=0x3 id=99
+  1680x1050 @60.0Hz gui=true flags=0x3 id=100
+  1680x1050 @60.0Hz gui=true flags=0x3 id=101
+  1920x1080 HiDPI(px 3840x2160) @240.0Hz gui=true flags=0x2000003 id=102
+  1920x1080 HiDPI(px 3840x2160) @240.0Hz gui=true flags=0x2000007 id=103
+  1920x1080 @240.0Hz gui=true flags=0x3 id=104
+  1920x1080 @240.0Hz gui=true flags=0x3 id=105
+  1920x1080 HiDPI(px 3840x2160) @120.0Hz gui=true flags=0x2000003 id=106
+  1920x1080 @120.0Hz gui=true flags=0x3 id=107
+  1920x1080 HiDPI(px 3840x2160) @60.0Hz gui=true flags=0x2000003 id=108
+  1920x1080 @60.0Hz gui=true flags=0x3 id=109
+  1920x1080 HiDPI(px 3840x2160) @30.0Hz gui=true flags=0x2000003 id=110
+  1920x1080 @30.0Hz gui=true flags=0x3 id=111
+  2048x1152 HiDPI(px 4096x2304) @240.0Hz gui=true flags=0x3 id=112
+  2048x1152 HiDPI(px 4096x2304) @240.0Hz gui=true flags=0x3 id=113
+  2048x1152 @240.0Hz gui=true flags=0x3 id=114
+  2048x1152 @240.0Hz gui=true flags=0x3 id=115
+  2048x1152 @120.0Hz gui=true flags=0x3 id=116
+  2048x1152 HiDPI(px 4096x2304) @120.0Hz gui=true flags=0x3 id=117
+  2048x1152 HiDPI(px 4096x2304) @60.0Hz gui=true flags=0x3 id=118
+  2048x1152 @60.0Hz gui=true flags=0x3 id=119
+  2048x1152 @30.0Hz gui=true flags=0x3 id=120
+  2048x1152 HiDPI(px 4096x2304) @30.0Hz gui=true flags=0x3 id=121
+  2304x1296 HiDPI(px 4608x2592) @240.0Hz gui=true flags=0x3 id=122
+  2304x1296 HiDPI(px 4608x2592) @240.0Hz gui=true flags=0x3 id=123
+  2304x1296 @240.0Hz gui=true flags=0x3 id=124
+  2304x1296 @240.0Hz gui=true flags=0x3 id=125
+  2304x1296 HiDPI(px 4608x2592) @120.0Hz gui=true flags=0x3 id=126
+  2304x1296 @120.0Hz gui=true flags=0x3 id=127
+  2304x1296 HiDPI(px 4608x2592) @60.0Hz gui=true flags=0x3 id=128
+  2304x1296 @60.0Hz gui=true flags=0x3 id=129
+  2304x1296 @30.0Hz gui=true flags=0x3 id=130
+  2304x1296 HiDPI(px 4608x2592) @30.0Hz gui=true flags=0x3 id=131
+  2560x1440 HiDPI(px 5120x2880) @240.0Hz gui=true flags=0x3 id=132
+  2560x1440 HiDPI(px 5120x2880) @240.0Hz gui=true flags=0x3 id=133
+  2560x1440 @240.0Hz gui=true flags=0x3 id=134
+  2560x1440 @240.0Hz gui=true flags=0x3 id=135
+  2560x1440 HiDPI(px 5120x2880) @120.0Hz gui=true flags=0x3 id=136
+  2560x1440 @120.0Hz gui=true flags=0x3 id=137
+  2560x1440 @60.0Hz gui=true flags=0x3 id=138
+  2560x1440 HiDPI(px 5120x2880) @60.0Hz gui=true flags=0x3 id=139
+  2560x1440 @30.0Hz gui=true flags=0x3 id=140
+  2560x1440 HiDPI(px 5120x2880) @30.0Hz gui=true flags=0x3 id=141
+  3008x1692 HiDPI(px 6016x3384) @240.0Hz gui=true flags=0x3 id=142
+  3008x1692 @240.0Hz gui=true flags=0x3 id=143
+  3008x1692 @240.0Hz gui=true flags=0x3 id=144
+  3008x1692 HiDPI(px 6016x3384) @240.0Hz gui=true flags=0x3 id=145
+  3008x1692 @120.0Hz gui=true flags=0x3 id=146
+  3008x1692 HiDPI(px 6016x3384) @120.0Hz gui=true flags=0x3 id=147
+  3008x1692 @60.0Hz gui=true flags=0x3 id=148
+  3008x1692 HiDPI(px 6016x3384) @60.0Hz gui=true flags=0x3 id=149
+  3008x1692 HiDPI(px 6016x3384) @30.0Hz gui=true flags=0x3 id=150
+  3008x1692 @30.0Hz gui=true flags=0x3 id=151
+  3200x1800 @240.0Hz gui=true flags=0x3 id=152
+  3200x1800 @240.0Hz gui=true flags=0x3 id=153
+  3200x1800 @120.0Hz gui=true flags=0x3 id=154
+  3200x1800 @60.0Hz gui=true flags=0x3 id=155
+  3200x1800 @30.0Hz gui=true flags=0x3 id=156
+  3360x1890 @240.0Hz gui=true flags=0x3 id=157
+  3360x1890 @240.0Hz gui=true flags=0x3 id=158
+  3360x1890 @120.0Hz gui=true flags=0x3 id=159
+  3360x1890 @60.0Hz gui=true flags=0x3 id=160
+  3360x1890 @30.0Hz gui=true flags=0x3 id=161
+  3840x2160 @240.0Hz gui=true flags=0x2000003 id=162
+  3840x2160 @240.0Hz gui=true flags=0x2000003 id=163
+  3840x2160 @120.0Hz gui=true flags=0x2000003 id=164
+  3840x2160 @60.0Hz gui=true flags=0x2000003 id=165
+  3840x2160 @30.0Hz gui=true flags=0x2000003 id=166
+  400x300 HiDPI(px 800x600) @75.0Hz gui=false flags=0x1 id=192
+  400x300 HiDPI(px 800x600) @75.0Hz gui=false flags=0x1 id=193
+  400x300 HiDPI(px 800x600) @72.0Hz gui=false flags=0x1 id=194
+  400x300 HiDPI(px 800x600) @60.0Hz gui=false flags=0x1 id=195
+  512x384 HiDPI(px 1024x768) @240.0Hz gui=false flags=0x1 id=196
+  512x384 HiDPI(px 1024x768) @240.0Hz gui=false flags=0x1 id=197
+  512x384 HiDPI(px 1024x768) @120.0Hz gui=false flags=0x1 id=198
+  512x384 HiDPI(px 1024x768) @75.0Hz gui=false flags=0x1 id=199
+  512x384 HiDPI(px 1024x768) @75.0Hz gui=false flags=0x1 id=200
+  512x384 HiDPI(px 1024x768) @70.0Hz gui=false flags=0x1 id=201
+  512x384 HiDPI(px 1024x768) @60.0Hz gui=false flags=0x1 id=202
+  512x384 HiDPI(px 1024x768) @60.0Hz gui=false flags=0x1 id=203
+  512x384 HiDPI(px 1024x768) @30.0Hz gui=false flags=0x1 id=204
+  576x432 HiDPI(px 1152x864) @75.0Hz gui=false flags=0x1 id=205
+  576x432 HiDPI(px 1152x864) @75.0Hz gui=false flags=0x1 id=206
+  640x360 HiDPI(px 1280x720) @240.0Hz gui=false flags=0x1 id=207
+  640x360 HiDPI(px 1280x720) @240.0Hz gui=false flags=0x1 id=208
+  640x360 HiDPI(px 1280x720) @120.0Hz gui=false flags=0x1 id=209
+  640x360 HiDPI(px 1280x720) @60.0Hz gui=false flags=0x1 id=210
+  640x360 HiDPI(px 1280x720) @60.0Hz gui=false flags=0x1 id=211
+  640x360 HiDPI(px 1280x720) @60.0Hz gui=false flags=0x1 id=212
+  640x360 HiDPI(px 1280x720) @30.0Hz gui=false flags=0x1 id=213
+  640x400 HiDPI(px 1280x800) @60.0Hz gui=false flags=0x1 id=214
+  640x400 HiDPI(px 1280x800) @60.0Hz gui=false flags=0x1 id=215
+  640x480 HiDPI(px 1280x960) @240.0Hz gui=false flags=0x1 id=216
+  640x480 HiDPI(px 1280x960) @240.0Hz gui=false flags=0x1 id=217
+  640x480 HiDPI(px 1280x960) @120.0Hz gui=false flags=0x1 id=218
+  640x480 HiDPI(px 1280x960) @60.0Hz gui=false flags=0x1 id=219
+  640x480 HiDPI(px 1280x960) @30.0Hz gui=false flags=0x1 id=220
+  640x480 @75.0Hz gui=false flags=0x1 id=221
+  640x480 @75.0Hz gui=false flags=0x1 id=222
+  640x480 @60.0Hz gui=false flags=0x1 id=223
+  640x512 HiDPI(px 1280x1024) @75.0Hz gui=false flags=0x1 id=224
+  640x512 HiDPI(px 1280x1024) @75.0Hz gui=false flags=0x1 id=225
+  640x512 HiDPI(px 1280x1024) @60.0Hz gui=false flags=0x1 id=226
+  672x378 HiDPI(px 1344x756) @240.0Hz gui=false flags=0x1 id=227
+  672x378 HiDPI(px 1344x756) @240.0Hz gui=false flags=0x1 id=228
+  672x378 HiDPI(px 1344x756) @120.0Hz gui=false flags=0x1 id=229
+  672x378 HiDPI(px 1344x756) @60.0Hz gui=false flags=0x1 id=230
+  672x378 HiDPI(px 1344x756) @30.0Hz gui=false flags=0x1 id=231
+  672x504 HiDPI(px 1344x1008) @240.0Hz gui=false flags=0x1 id=232
+  672x504 HiDPI(px 1344x1008) @240.0Hz gui=false flags=0x1 id=233
+  672x504 HiDPI(px 1344x1008) @120.0Hz gui=false flags=0x1 id=234
+  672x504 HiDPI(px 1344x1008) @60.0Hz gui=false flags=0x1 id=235
+  672x504 HiDPI(px 1344x1008) @30.0Hz gui=false flags=0x1 id=236
+  720x450 HiDPI(px 1440x900) @60.0Hz gui=false flags=0x1 id=237
+  720x450 HiDPI(px 1440x900) @60.0Hz gui=false flags=0x1 id=238
+  720x480 @60.0Hz gui=false flags=0x1 id=239
+  720x480 @60.0Hz gui=false flags=0x1 id=240
+  800x450 HiDPI(px 1600x900) @240.0Hz gui=false flags=0x1 id=241
+  800x450 HiDPI(px 1600x900) @240.0Hz gui=false flags=0x1 id=242
+  800x450 HiDPI(px 1600x900) @120.0Hz gui=false flags=0x1 id=243
+  800x450 HiDPI(px 1600x900) @60.0Hz gui=false flags=0x1 id=244
+  800x450 HiDPI(px 1600x900) @60.0Hz gui=false flags=0x1 id=245
+  800x450 HiDPI(px 1600x900) @60.0Hz gui=false flags=0x1 id=246
+  800x450 HiDPI(px 1600x900) @30.0Hz gui=false flags=0x1 id=247
+  960x540 HiDPI(px 1920x1080) @240.0Hz gui=false flags=0x1 id=248
+  960x540 HiDPI(px 1920x1080) @240.0Hz gui=false flags=0x1 id=249
+  960x540 HiDPI(px 1920x1080) @120.0Hz gui=false flags=0x1 id=250
+  960x540 HiDPI(px 1920x1080) @60.0Hz gui=false flags=0x1 id=251
+  1024x768 @60.0Hz gui=false flags=0x1 id=252
+  1280x720 HiDPI(px 2560x1440) @240.0Hz gui=false flags=0x1 id=253
+  1280x720 HiDPI(px 2560x1440) @240.0Hz gui=false flags=0x1 id=254
+  1280x720 HiDPI(px 2560x1440) @120.0Hz gui=false flags=0x1 id=255
+  1280x720 HiDPI(px 2560x1440) @60.0Hz gui=false flags=0x1 id=256
+  1280x720 @60.0Hz gui=false flags=0x1 id=257
+  1600x900 @60.0Hz gui=false flags=0x1 id=258
+  1920x1080 @240.0Hz gui=false flags=0x1 id=259
+  1920x1080 @240.0Hz gui=false flags=0x1 id=260
+  1920x1080 @120.0Hz gui=false flags=0x1 id=261
+  1920x1080 @60.0Hz gui=false flags=0x1 id=262
+  2560x1440 @240.0Hz gui=false flags=0x1 id=263
+  2560x1440 @240.0Hz gui=false flags=0x1 id=264
+  2560x1440 @120.0Hz gui=false flags=0x1 id=265
+  2560x1440 @60.0Hz gui=false flags=0x1 id=266
