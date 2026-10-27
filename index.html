@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ForceRes</title>
+<meta name="description" content="A free Mac menu bar app that sets your displays to 720p, 1080p, 1440p or 4K.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+/* A single plain column: name, one sentence, the download, how it works. */
+:root {
+  --bg: #ffffff; --fg: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --link: #0a66d8;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #161617; --fg: #f2f2f4; --muted: #a1a1a6; --line: #2e2e31; --link: #4f9dff;
+  color-scheme: dark;
+} }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 var(--font); -webkit-font-smoothing: antialiased }
+main { max-width: 620px; margin: 0 auto; padding-block: 72px 48px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)) }
+header { display: flex; align-items: center; gap: 14px }
+header img { width: 64px; height: 64px; margin: -6px -4px -6px -6px }
+h1 { font-size: 28px; line-height: 1.2; margin: 0; letter-spacing: -0.01em }
+.badge { font-size: 13px; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; margin-left: -4px }
+p, li { text-wrap: pretty }
+p { margin: 0 0 16px }
+.intro { margin-top: 20px }
+.download { margin: 24px 0 8px }
+.download a { display: inline-block; background: var(--link); color: #fff; text-decoration: none; font-weight: 600;
+  padding: 9px 18px; border-radius: 8px }
+.download a:hover { filter: brightness(1.08) }
+.download a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px }
+.req { color: var(--muted); font-size: 15px }
+.shot { display: block; width: 448px; max-width: calc(100% + 34px); height: auto; margin: 16px 0 -22px -34px }
+h2 { font-size: 17px; margin: 28px 0 10px }
+ul { margin: 0; padding-left: 20px }
+li { margin-bottom: 8px }
+a { color: var(--link) }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px }
+footer a { color: inherit }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="icon.png" width="64" height="64" alt="">
+    <h1>ForceRes</h1>
+    <span class="badge">Beta</span>
+  </header>
+
+  <p class="intro">A free Mac menu bar app that sets your displays to 720p, 1080p, 1440p or 4K.</p>
+
+  <p class="download"><a href="https://github.com/macprotips/ForceRes/releases/download/v1.0.0/ForceRes-1.0.0.zip">Download ForceRes</a></p>
+  <p class="req">Beta. macOS 15 or later, Apple silicon.</p>
+
+  <img class="shot" src="panel.png" width="448" height="253" alt="The ForceRes panel, with 720p, 1080p, 1440p and 4K for an Elgato display">
+
+  <h2>How it works</h2>
+  <ul>
+    <li>Click the ForceRes icon in the menu bar and choose a size.</li>
+    <li>Each display keeps its own size, including after sleep and restarts.</li>
+    <li>To go back, choose Default Resolution or quit ForceRes.</li>
+  </ul>
+
+  <footer>MacProTips Apps · <a href="https://github.com/macprotips/ForceRes">Source on GitHub</a></footer>
+</main>
+</body>
+</html>
