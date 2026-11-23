@@ -10,8 +10,8 @@ enum PanelMetrics {
     static let topPadding: CGFloat = 15
     /// Matches the top padding so the bottom row sits in the same rhythm as the header.
     static let bottomPadding: CGFloat = 15
-    /// Content width: four tiles, three gaps. The panel is sized to fit this plus the padding.
-    static var contentWidth: CGFloat { tileWidth * 4 + tileGap * 3 }
+    /// Content width for `tiles` tiles and their gaps. The panel is sized to fit this plus the padding.
+    static func contentWidth(tiles: Int = 4) -> CGFloat { tileWidth * CGFloat(tiles) + tileGap * CGFloat(tiles - 1) }
 
     // MARK: Header
 

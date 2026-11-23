@@ -315,6 +315,21 @@ final class AppModel {
         return MenuItemState(title: title, isEnabled: true, isChecked: checked)
     }
 
+    /// The mode Default Resolution restores on `display`, when the display is off it and no shown
+    /// preset tile already covers it; the panel then adds a Default tile for it. `nil` otherwise.
+    func defaultTileMode(for display: DisplayInfo) -> DisplayModeInfo? {
+        let physical = physicalView(of: display)
+        // An untouched display is in its original mode (see `recordOriginalModeIfNeeded`).
+        guard store.originalModeID(forDisplayID: physical.id) != nil || store.choice(forDisplayID: physical.id) != nil,
+              let restore = restoreMode(for: physical),
+              activeVirtualMirrors[display.id] != nil || display.currentModeID != restore.id else { return nil }
+        let covered = presets(for: display).contains { preset in
+            ModeSelector.matches(restore, preset: preset, variant: .hiDPI)
+                || ModeSelector.matches(restore, preset: preset, variant: .lowResolution)
+        }
+        return covered ? nil : restore
+    }
+
     /// The display the panel controls. Set when the panel opens to the screen it opened on, so a
     /// click on a second screen's menu bar adjusts that screen, and changeable with the picker.
     var selectedDisplayID: String?

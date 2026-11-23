@@ -10,6 +10,7 @@ struct PanelView: View {
     let dismiss: () -> Void
 
     @State private var hoveredPreset: ResolutionPreset?
+    @State private var hoveringDefault = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     /// Picker labels longer than this switch the picker to the pull-down style.
@@ -36,7 +37,7 @@ struct PanelView: View {
             bottomRow
                 .padding(.top, PanelMetrics.tilesToBottomRow)
         }
-        .frame(width: PanelMetrics.contentWidth)
+        .frame(width: PanelMetrics.contentWidth(tiles: max(4, tileStates.count + (defaultTile == nil ? 0 : 1))))
         .padding(.horizontal, PanelMetrics.horizontalPadding)
         .padding(.top, PanelMetrics.topPadding)
         .padding(.bottom, PanelMetrics.bottomPadding)
@@ -106,6 +107,16 @@ struct PanelView: View {
         return model.presets(for: display).map { ($0, model.tileState($0, for: display)) }
     }
 
+    /// Default tile contents when the panel shows one for the current display.
+    private var defaultTile: (item: MenuItemState, note: String)? {
+        guard let display, let mode = model.defaultTileMode(for: display) else { return nil }
+        let item = model.defaultResolutionItem(for: display)
+        let note = item.isEnabled
+            ? "Back to \(mode.width) × \(mode.height)"
+            : String(item.title.split(separator: " · ", maxSplits: 1).last ?? "")
+        return (item, note)
+    }
+
     @ViewBuilder
     private var tileRow: some View {
         if let display {
@@ -122,6 +133,12 @@ struct PanelView: View {
                         }
                     }) {
                         model.select(preset: entry.preset, for: display)
+                    }
+                }
+                if let tile = defaultTile {
+                    DefaultTile(item: tile.item, note: tile.note,
+                                hoverChanged: { hoveringDefault = $0 }) {
+                        model.select(preset: nil, for: display)
                     }
                 }
             }
@@ -166,7 +183,7 @@ struct PanelView: View {
     private func caption(refreshState: RefreshControlState?) -> some View {
         let states = tileStates
         let hovered = states.first { $0.preset == hoveredPreset }?.state
-        let text = TileState.caption(hovered: hovered, refreshNote: refreshState?.caption, states: states.map(\.state))
+        let text = hoveringDefault ? (defaultTile?.note ?? "") : TileState.caption(hovered: hovered, refreshNote: refreshState?.caption, states: states.map(\.state))
         return Text(text)
             .font(.system(size: PanelMetrics.captionSize))
             .foregroundStyle(Color(nsColor: .secondaryLabelColor))

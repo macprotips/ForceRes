@@ -267,3 +267,22 @@ private extension LaunchAtLoginState {
         self.requiresApproval = requiresApproval
     }
 }
+
+@Suite("Default tile")
+@MainActor
+struct DefaultTileTests {
+    @Test func shownOnlyOffTheDefaultWhenNoPresetCoversIt() throws {
+        let h = Harness(displays: [try Fixtures.display(.m1MacBookAir)])
+        h.model.setAspect(.sixteenByNine, for: h.display)
+        // Untouched: already at its default.
+        #expect(h.model.defaultTileMode(for: h.display) == nil)
+
+        h.model.setAspect(.sixteenByTen, for: h.display)
+        h.model.select(preset: .hdPlus900, for: h.display)
+        h.model.keepPending()
+        // Off the default, but the 800 tile covers 1280 × 800.
+        #expect(h.model.defaultTileMode(for: h.display) == nil)
+        h.model.setAspect(.sixteenByNine, for: h.display)
+        #expect(h.model.defaultTileMode(for: h.display)?.id == 8)
+    }
+}

@@ -97,3 +97,42 @@ extension View {
         if let hint { accessibilityHint(hint) } else { self }
     }
 }
+
+/// The Default Resolution tile, shown after the presets when none of them covers the size the
+/// display would return to.
+struct DefaultTile: View {
+    let item: MenuItemState
+    /// Size it restores ("Back to 1512 × 982"), or why it is disabled.
+    let note: String
+    let hoverChanged: (Bool) -> Void
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        Button {
+            guard !item.isChecked else { return }
+            action()
+        } label: {
+            VStack(spacing: PanelMetrics.tileSymbolToLabel) {
+                Image(systemName: "arrow.counterclockwise")
+                    .frame(height: PanelMetrics.tileSymbolSize(step: 3))
+                    .font(.system(size: PanelMetrics.tileSymbolSize(step: 1), weight: .regular))
+                Text("Default")
+                    .font(.system(size: PanelMetrics.tileLabelSize, weight: .semibold))
+            }
+            .frame(width: PanelMetrics.tileWidth, height: PanelMetrics.tileHeight)
+        }
+        .buttonStyle(TileButtonStyle(isSelected: item.isChecked, isHovered: isHovered))
+        .disabled(!item.isEnabled)
+        .opacity(item.isEnabled ? 1 : PanelMetrics.disabledOpacity)
+        .onHover { hovering in
+            isHovered = hovering
+            hoverChanged(hovering)
+        }
+        .help(note)
+        .accessibilityLabel(AppModel.defaultResolutionTitle)
+        .accessibilityValue(note)
+        .accessibilityAddTraits(item.isChecked ? .isSelected : [])
+    }
+}
