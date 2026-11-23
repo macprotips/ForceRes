@@ -109,5 +109,9 @@ enum PanelMetrics {
     static let confirmationInitialSize = CGSize(width: 380, height: 140)
     static let confirmationMinWidth: CGFloat = 360
     static let confirmationPadding: CGFloat = 20
-    static let confirmationSpacing: CGFloat = 12
+    static let confirmationSpacing: CGFloat = 16
+    static let confirmationIconSize: CGFloat = 30
+    static let confirmationIconToText: CGFloat = 14
+    /// Gap between the title, the setting and the display name.
+    static let confirmationLineSpacing: CGFloat = 3
 }

@@ -51,7 +51,10 @@ final class ConfirmationPanelController {
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        panel.contentView = NSHostingView(rootView: ConfirmationView(model: model))
+        let host = NSHostingView(rootView: ConfirmationView(model: model))
+        // The title bar is transparent, so don't reserve space for it.
+        host.safeAreaRegions = []
+        panel.contentView = host
         panel.setContentSize(panel.contentView?.fittingSize ?? panel.frame.size)
         center(panel, on: Self.screen(forDisplayUUID: pending.displayID))
         panel.orderFrontRegardless()
