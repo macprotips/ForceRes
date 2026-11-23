@@ -471,18 +471,39 @@ struct RefreshControlStateTests {
         #expect(h.service.applied.count == 2)
     }
 
-    @Test func aVirtualMirrorDisablesTheControlWithItsNote() {
-        let h = Harness(displays: [macBook])
+    @Test func aVirtualMirrorRunsAtTheRefreshControlsRate() throws {
+        let h = Harness(displays: [try Fixtures.display(.m3MacBookPro14)])
+        h.model.select(preset: .fullHD1080, for: h.display)
+        #expect(h.provider!.created.last?.refreshRate == 120)
+        #expect(h.model.pendingConfirmation?.description.contains("virtual, 120 Hertz") == true)
+        h.model.keepPending()
+
+        var state = h.model.refreshControlState(for: h.model.displays[0])
+        #expect(state.isEnabled && state.label == "ProMotion")
+        #expect(state.options.contains(.fixed(hertz: 60)))
+
+        h.model.select(refresh: .fixed(hertz: 60), for: h.model.displays[0])
+        #expect(h.provider!.created.last?.refreshRate == 60)
+        #expect(h.provider!.created.count == 2 && h.provider!.activeDisplayIDs.count == 1)
+        h.model.keepPending()
+        #expect(h.store.choice(forDisplayID: h.display.id)?.refresh == .fixed(hertz: 60))
+        state = h.model.refreshControlState(for: h.model.displays[0])
+        #expect(state.label == "60 Hertz")
+
+        // Same rate again: nothing is rebuilt.
+        h.model.select(refresh: .fixed(hertz: 60), for: h.model.displays[0])
+        #expect(h.provider!.created.count == 2 && h.model.pendingConfirmation == nil)
+        h.model.cleanupForTermination()
+    }
+
+    @Test func revertingARateChangeRestoresTheOldRate() throws {
+        let h = Harness(displays: [try Fixtures.display(.m3MacBookPro14)])
         h.model.select(preset: .fullHD1080, for: h.display)
         h.model.keepPending()
-        let state = h.model.refreshControlState(for: h.model.displays[0])
-        #expect(!state.isEnabled)
-        #expect(state.note == "Virtual displays run at 60 Hertz")
-        #expect(state.label == "60 Hertz")
-        #expect(state.options.isEmpty)
-        let applied = h.service.applied.count
-        h.model.select(refresh: .fixed(hertz: 30), for: h.model.displays[0])
-        #expect(h.service.applied.count == applied && h.model.pendingConfirmation == nil)
+        h.model.select(refresh: .fixed(hertz: 48), for: h.model.displays[0])
+        h.model.revertPending()
+        #expect(h.provider!.created.map(\.refreshRate) == [120, 48, 120])
+        #expect(h.store.choice(forDisplayID: h.display.id)?.refresh == .highest)
         h.model.cleanupForTermination()
     }
 
@@ -563,9 +584,6 @@ struct RefreshPureTests {
         let pending = RefreshControlState(options: enabled.options, current: .fixed(hertz: 60), isProMotion: false,
                                           isConfirmationPending: true, fallbackNote: "fallback")
         #expect(pending.caption == TileState.pendingNote)
-        let mirrored = RefreshControlState(options: [], current: nil, isProMotion: false, isVirtualMirror: true,
-                                           fallbackNote: "fallback")
-        #expect(mirrored.caption == RefreshControlState.virtualNote)
     }
 
     @Test func captionPrefersHoverThenTheRefreshNote() {

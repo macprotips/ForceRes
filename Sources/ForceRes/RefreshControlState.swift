@@ -3,9 +3,6 @@ import ForceResCore
 /// Everything the refresh-rate pull-down needs for one display, derived from pure inputs so the
 /// labels, enabled flag and note can be unit tested without SwiftUI.
 struct RefreshControlState: Equatable, Sendable {
-    /// Shown while the display mirrors one of our virtual displays (macOS harmonises mirror
-    /// targets to the 60 Hz master, so there is no rate to choose).
-    static let virtualNote = "Virtual displays run at 60 Hertz"
     /// The control's label when the current rate is unknown.
     static let unknownLabel = "Refresh rate"
     /// Shown when the current option cannot be named: the classifier is unavailable and the
@@ -15,7 +12,7 @@ struct RefreshControlState: Equatable, Sendable {
     static let unverifiedFallbackNote = "Couldn't verify the refresh rate on this Mac"
 
     /// What the display enumerates for the resolution in effect: Variable/ProMotion first, then
-    /// fixed rates descending. Empty while a virtual mirror is active.
+    /// fixed rates descending.
     var options: [RefreshOption]
     /// The option the display is on, when known.
     var current: RefreshOption?
@@ -35,23 +32,13 @@ struct RefreshControlState: Equatable, Sendable {
     ///   - options: `ModeSelector.availableRefreshOptions` for the display's current family.
     ///   - current: `ModeSelector.currentRefreshOption`.
     ///   - isProMotion: the display is built in and its variable entry is a ProMotion one.
-    ///   - isVirtualMirror: the display mirrors one of our virtual displays.
     ///   - isConfirmationPending: `AppModel.pendingConfirmation != nil`; disables the control.
     ///   - isBusy: `AppModel.isBusy`; disables the control.
     ///   - fallbackNote: `AppModel.refreshFallbackNote(for:)`, the caption of an enabled control.
     init(options: [RefreshOption], current: RefreshOption?, isProMotion: Bool,
-         isVirtualMirror: Bool = false, isConfirmationPending: Bool = false, isBusy: Bool = false,
+         isConfirmationPending: Bool = false, isBusy: Bool = false,
          fallbackNote: String? = nil) {
         self.isProMotion = isProMotion
-        if isVirtualMirror {
-            self.options = []
-            self.current = .fixed(hertz: 60)
-            isEnabled = false
-            note = Self.virtualNote
-            caption = note
-            label = Self.label(for: .fixed(hertz: 60), isProMotion: false)
-            return
-        }
         self.options = options
         self.current = current
         let shown = current ?? (options.count == 1 ? options.first : nil)

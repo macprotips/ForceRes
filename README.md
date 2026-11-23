@@ -23,7 +23,7 @@ Click the menu bar icon and choose a size. Click Keep to confirm the change. Oth
 
 Kept sizes are reapplied when ForceRes launches. Quitting returns every display to its original size.
 
-Sizes a display cannot show are dimmed, and hovering one shows the reason. A MacBook's built-in screen reaches extra sizes by mirroring a virtual display at 60 Hz, so 16:9 sizes appear letterboxed on its 16:10 screen.
+Sizes a display cannot show are dimmed, and hovering one shows the reason. A MacBook's built-in screen reaches extra sizes by mirroring a virtual display that runs at the rate chosen in the refresh rate control. 16:9 sizes appear letterboxed on its 16:10 screen.
 
 ## Building
 

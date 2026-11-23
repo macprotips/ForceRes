@@ -215,6 +215,16 @@ public enum ModeSelector: Sendable {
         return options
     }
 
+    /// The rate for a virtual display that `display` mirrors: the fixed rate `refresh` names when
+    /// the display lists it at its current size, else the display's highest rate there. Virtual
+    /// displays run at the rate they are created with (docs/RESEARCH.md section 13).
+    public static func virtualRefreshRate(for refresh: RefreshPreference, on display: DisplayInfo) -> Int {
+        let family = display.currentMode.map { self.family(of: $0, in: display.modes) } ?? display.modes
+        let rates = Set(family.map(\.roundedRefreshRate)).filter { $0 > 0 }
+        if case .fixed(let hertz) = refresh, rates.contains(hertz) { return hertz }
+        return rates.max() ?? 60
+    }
+
     /// The option matching the display's current mode (`refreshOption(of:range:)`), or `nil`
     /// when it cannot be named: the current mode is unknown; it reports 0 Hz without being
     /// classified adaptive; or it is unclassified (`isAdaptiveRefresh == nil`) while a twin exists

@@ -14,8 +14,7 @@ struct TileState: Equatable, Sendable {
     var isSelected: Bool
     /// `false` dims the tile and makes it non-interactive.
     var isEnabled: Bool
-    /// Why the tile is disabled, the virtual-display caveat, or the scaling fallback. `nil` for a
-    /// plain native tile.
+    /// Why the tile is disabled, the virtual-display caveat, or how a native mode will look.
     var note: String?
     /// "1080p, 1920 by 1080".
     var accessibilityLabel: String
@@ -41,14 +40,15 @@ struct TileState: Equatable, Sendable {
         switch availability {
         case .available(_, let exact):
             isEnabled = true
-            if !exact {
-                note = scaling == .hiDPI
-                    ? "No HiDPI variant on this display; uses the 1x mode"
-                    : "No 1x variant on this display; uses the HiDPI mode"
+            switch (scaling, exact) {
+            case (.hiDPI, true): note = "Display stays sharp"
+            case (.hiDPI, false): note = "Display will look less sharp"
+            case (.lowResolution, true): note = "Shown at low resolution"
+            case (.lowResolution, false): note = "No 1x variant on this display; uses the HiDPI mode"
             }
             accessibilityValue = note
         case .needsVirtualDisplay(let plan):
-            var caveat = "Via virtual display, \(Units.hertz(60))"
+            var caveat = "Via virtual display"
             if plan.letterboxed { caveat += ", letterboxed" }
             if isVirtualSupported {
                 isEnabled = true

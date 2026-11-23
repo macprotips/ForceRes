@@ -146,10 +146,4 @@ struct PanelMenusTests {
         try perform(menu.items[2])
         #expect(selected == .fixed(hertz: 120))
     }
-
-    @Test func refreshMenuIsEmptyForAVirtualMirror() {
-        let state = RefreshControlState(options: [], current: nil, isProMotion: false, isVirtualMirror: true)
-        let menu = PanelMenus.refreshMenu(state: state) { _ in }
-        #expect(menu.items.isEmpty)
-    }
 }

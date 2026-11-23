@@ -591,3 +591,23 @@ struct VirtualDisplayControllerLiveHelperTests {
         #expect(controller.activeDisplayIDs.isEmpty)
     }
 }
+
+@Suite("VirtualDisplayHostProtocol.Request refresh rate")
+struct VirtualDisplayHostRefreshRateTests {
+    let base = ["--width", "1920", "--height", "1080", "--name", "X", "--vendor", "1", "--product", "2",
+                "--serial", "3", "--mm", "400x225"]
+
+    @Test func roundTripsAndDefaultsTo60() throws {
+        #expect(try VirtualDisplayHostProtocol.Request.parse(arguments: base).refreshRate == 60)
+        let parsed = try VirtualDisplayHostProtocol.Request.parse(arguments: base + ["--hz", "120"])
+        #expect(parsed.refreshRate == 120)
+        #expect(try VirtualDisplayHostProtocol.Request.parse(arguments: parsed.arguments) == parsed)
+    }
+
+    @Test(arguments: ["0", "abc", "1001"])
+    func rejectsBadRates(_ value: String) {
+        #expect(throws: VirtualDisplayHostProtocol.ArgumentError.invalidValue(flag: "--hz", value: value)) {
+            try VirtualDisplayHostProtocol.Request.parse(arguments: base + ["--hz", value])
+        }
+    }
+}

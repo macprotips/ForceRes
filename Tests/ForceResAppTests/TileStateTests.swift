@@ -16,9 +16,9 @@ struct TileStateTests {
                               isSelected: false, isVirtualSupported: true, scaling: .hiDPI)
         #expect(state.isEnabled)
         #expect(!state.isSelected)
-        #expect(state.note == nil)
+        #expect(state.note == "Display stays sharp")
         #expect(state.accessibilityLabel == "1080p, 1920 by 1080")
-        #expect(state.accessibilityValue == nil)
+        #expect(state.accessibilityValue == "Display stays sharp")
         #expect(state.accessibilityHint == "Switches the display to 1080p (1920 × 1080)")
     }
 
@@ -35,7 +35,7 @@ struct TileStateTests {
         let hiDPI = TileState(preset: .hd720, availability: .available(Self.mode1080, exactScaling: false),
                               isSelected: false, isVirtualSupported: true, scaling: .hiDPI)
         #expect(hiDPI.isEnabled)
-        #expect(hiDPI.note == "No HiDPI variant on this display; uses the 1x mode")
+        #expect(hiDPI.note == "Display will look less sharp")
         #expect(hiDPI.accessibilityValue == hiDPI.note)
         let lowRes = TileState(preset: .hd720, availability: .available(Self.mode1080, exactScaling: false),
                                isSelected: false, isVirtualSupported: true, scaling: .lowResolution)
@@ -48,8 +48,8 @@ struct TileStateTests {
         let state = TileState(preset: .fullHD1080, availability: .needsVirtualDisplay(plan),
                               isSelected: false, isVirtualSupported: true, scaling: .hiDPI)
         #expect(state.isEnabled)
-        #expect(state.note == "Via virtual display, 60 Hertz, letterboxed")
-        #expect(state.accessibilityValue == "Via virtual display, 60 Hertz, letterboxed")
+        #expect(state.note == "Via virtual display, letterboxed")
+        #expect(state.accessibilityValue == "Via virtual display, letterboxed")
         #expect(state.accessibilityHint == "Switches the display to 1080p (1920 × 1080)")
     }
 
@@ -124,10 +124,10 @@ struct TileStateTests {
                                     isSelected: false, isVirtualSupported: false, scaling: .hiDPI)
         let states = [plain, fallback, unsupported, unavailable]
         #expect(TileState.caption(hovered: nil, states: states) == "Not supported by this display")
-        #expect(TileState.caption(hovered: fallback, states: states) == "No HiDPI variant on this display; uses the 1x mode")
+        #expect(TileState.caption(hovered: fallback, states: states) == "Display will look less sharp")
         #expect(TileState.caption(hovered: unavailable, states: states) == "Not available on this Mac")
-        // Hovering a plain tile falls through to the first disabled one.
-        #expect(TileState.caption(hovered: plain, states: states) == "Not supported by this display")
+        // A native tile has its own note, so hovering it never shows another tile's.
+        #expect(TileState.caption(hovered: plain, states: states) == "Display stays sharp")
         #expect(TileState.caption(hovered: nil, states: [plain, fallback]) == "")
     }
 }
@@ -140,21 +140,21 @@ struct TileStateFixtureTests {
         let h = Harness(displays: [try Fixtures.display(.m4OdysseyG80SD)])
         let d = h.display
         let hd = h.model.tileState(.hd720, for: d)
-        #expect(hd.isEnabled && !hd.isSelected && hd.note == nil)
+        #expect(hd.isEnabled && !hd.isSelected && hd.note == "Display stays sharp")
         let full = h.model.tileState(.fullHD1080, for: d)
-        #expect(full.isEnabled && !full.isSelected && full.note == nil)
+        #expect(full.isEnabled && !full.isSelected && full.note == "Display stays sharp")
         let qhd = h.model.tileState(.qhd1440, for: d)
-        #expect(qhd.isEnabled && qhd.isSelected && qhd.note == nil)
+        #expect(qhd.isEnabled && qhd.isSelected && qhd.note == "Display stays sharp")
         let uhd = h.model.tileState(.uhd2160, for: d)
         #expect(uhd.isEnabled && !uhd.isSelected)
-        #expect(uhd.note == "No HiDPI variant on this display; uses the 1x mode")
+        #expect(uhd.note == "Display will look less sharp")
     }
 
     @Test func odysseyLowResolution() throws {
         let h = Harness(displays: [try Fixtures.display(.m4OdysseyG80SD)], scaling: .lowResolution)
         let d = h.display
         let uhd = h.model.tileState(.uhd2160, for: d)
-        #expect(uhd.isEnabled && !uhd.isSelected && uhd.note == nil)
+        #expect(uhd.isEnabled && !uhd.isSelected && uhd.note == "Shown at low resolution")
         // The current mode is 1440p HiDPI; the selection follows the preset regardless of variant.
         #expect(h.model.tileState(.qhd1440, for: d).isSelected)
     }
@@ -164,7 +164,7 @@ struct TileStateFixtureTests {
         let d = h.display
         let full = h.model.tileState(.fullHD1080, for: d)
         #expect(full.isEnabled && !full.isSelected)
-        #expect(full.note == "Via virtual display, 60 Hertz, letterboxed")
+        #expect(full.note == "Via virtual display, letterboxed")
         let uhd = h.model.tileState(.uhd2160, for: d)
         #expect(!uhd.isEnabled, "4K does not fit a 2560x1600 panel")
         #expect(uhd.note == "This display is 2560 × 1600")
@@ -181,9 +181,9 @@ struct TileStateFixtureTests {
         let h = Harness(displays: [try Fixtures.display(.external1080p)])
         let d = h.display
         let hd = h.model.tileState(.hd720, for: d)
-        #expect(hd.isEnabled && !hd.isSelected && hd.note == "No HiDPI variant on this display; uses the 1x mode")
+        #expect(hd.isEnabled && !hd.isSelected && hd.note == "Display will look less sharp")
         let full = h.model.tileState(.fullHD1080, for: d)
-        #expect(full.isEnabled && full.isSelected && full.note == "No HiDPI variant on this display; uses the 1x mode")
+        #expect(full.isEnabled && full.isSelected && full.note == "Display will look less sharp")
         for preset in [ResolutionPreset.qhd1440, .uhd2160] {
             let state = h.model.tileState(preset, for: d)
             #expect(!state.isEnabled, "\(preset) does not fit a 1920x1080 panel")
@@ -255,8 +255,6 @@ struct PanelHelperTests {
         #expect(known.valueLabel == "60 Hertz")
         let unknown = RefreshControlState(options: known.options, current: nil, isProMotion: false)
         #expect(unknown.label == RefreshControlState.unknownLabel && unknown.valueLabel == nil)
-        let mirrored = RefreshControlState(options: [], current: nil, isProMotion: false, isVirtualMirror: true)
-        #expect(mirrored.valueLabel == "60 Hertz" && !mirrored.isEnabled && mirrored.note == RefreshControlState.virtualNote)
     }
 }
 

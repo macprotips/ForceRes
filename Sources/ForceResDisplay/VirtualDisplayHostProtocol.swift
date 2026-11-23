@@ -28,6 +28,9 @@ public enum VirtualDisplayHostProtocol {
     /// Largest backing dimension the helper accepts. Generous, but rejects nonsense.
     public static let maximumDimension = 16_384
 
+    /// Highest refresh rate the helper accepts, in Hz.
+    public static let maximumRefreshRate = 1_000
+
     // MARK: Request (command line)
 
     /// What the supervisor asks the helper to create. All sizes are backing pixels.
@@ -51,9 +54,11 @@ public enum VirtualDisplayHostProtocol {
         public var millimetersWidth: Int
         /// Physical height in millimetres.
         public var millimetersHeight: Int
+        /// Refresh rate in whole Hz.
+        public var refreshRate: Int
 
         public init(width: Int, height: Int, hiDPI: Bool, name: String, vendorID: UInt32, productID: UInt32,
-                    serialNumber: UInt32, millimetersWidth: Int, millimetersHeight: Int) {
+                    serialNumber: UInt32, millimetersWidth: Int, millimetersHeight: Int, refreshRate: Int = 60) {
             self.width = width
             self.height = height
             self.hiDPI = hiDPI
@@ -63,6 +68,7 @@ public enum VirtualDisplayHostProtocol {
             self.serialNumber = serialNumber
             self.millimetersWidth = millimetersWidth
             self.millimetersHeight = millimetersHeight
+            self.refreshRate = refreshRate
         }
 
         /// Backing size of the primary mode.
@@ -82,7 +88,8 @@ public enum VirtualDisplayHostProtocol {
                         "--name", name,
                         "--vendor", String(vendorID), "--product", String(productID),
                         "--serial", String(serialNumber),
-                        "--mm", "\(millimetersWidth)x\(millimetersHeight)"]
+                        "--mm", "\(millimetersWidth)x\(millimetersHeight)",
+                        "--hz", String(refreshRate)]
             if hiDPI { args.append("--hidpi") }
             return args
         }
@@ -99,7 +106,7 @@ public enum VirtualDisplayHostProtocol {
                 switch flag {
                 case "--hidpi":
                     hiDPI = true
-                case "--width", "--height", "--name", "--vendor", "--product", "--serial", "--mm":
+                case "--width", "--height", "--name", "--vendor", "--product", "--serial", "--mm", "--hz":
                     guard index < arguments.count else { throw .missingValue(flag: flag) }
                     guard values[flag] == nil else { throw .duplicateFlag(flag: flag) }
                     values[flag] = arguments[index]
@@ -139,10 +146,17 @@ public enum VirtualDisplayHostProtocol {
                   mmWidth > 0, mmHeight > 0 else {
                 throw .invalidValue(flag: "--mm", value: millimeters)
             }
+            var refreshRate = 60
+            if let raw = values["--hz"] {
+                guard let value = Int(raw), (1...maximumRefreshRate).contains(value) else {
+                    throw .invalidValue(flag: "--hz", value: raw)
+                }
+                refreshRate = value
+            }
             return Request(width: width, height: height, hiDPI: hiDPI, name: name,
                            vendorID: try uint32("--vendor"), productID: try uint32("--product"),
                            serialNumber: try uint32("--serial"),
-                           millimetersWidth: mmWidth, millimetersHeight: mmHeight)
+                           millimetersWidth: mmWidth, millimetersHeight: mmHeight, refreshRate: refreshRate)
         }
     }
 
@@ -167,7 +181,7 @@ public enum VirtualDisplayHostProtocol {
 
     /// One-line usage text for the helper.
     public static let usage = """
-        usage: \(executableName) --width W --height H --name NAME --vendor N --product N --serial N --mm WxH [--hidpi]
+        usage: \(executableName) --width W --height H --name NAME --vendor N --product N --serial N --mm WxH [--hz N] [--hidpi]
         """
 
     // MARK: Reply (stdout)

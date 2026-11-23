@@ -141,7 +141,7 @@ struct AppModelNativeTests {
         #expect(h.store.scalingPreference == .lowResolution)
         #expect(h.model.scaling == .lowResolution)
         #expect(h.service.applied.isEmpty)
-        #expect(h.model.tileState(.fullHD1080, for: h.display).note == nil)
+        #expect(h.model.tileState(.fullHD1080, for: h.display).note == "Shown at low resolution")
     }
 }
 
@@ -411,9 +411,9 @@ struct AppModelMirroredSnapshotTests {
         let h = keptVirtual1080p()
         let d = h.model.displays[0]
         let full = h.model.tileState(.fullHD1080, for: d)
-        #expect(full.isSelected && full.isEnabled && full.note == "Via virtual display, 60 Hertz, letterboxed")
+        #expect(full.isSelected && full.isEnabled && full.note == "Via virtual display, letterboxed")
         let hd = h.model.tileState(.hd720, for: d)
-        #expect(!hd.isSelected && hd.isEnabled && hd.note == "Via virtual display, 60 Hertz, letterboxed")
+        #expect(!hd.isSelected && hd.isEnabled && hd.note == "Via virtual display, letterboxed")
         #expect(h.model.defaultResolutionItem(for: d) == MenuItemState(title: "Default Resolution", isEnabled: true, isChecked: false))
         #expect(h.model.currentPreset(for: d) == .fullHD1080)
         h.model.cleanupForTermination()

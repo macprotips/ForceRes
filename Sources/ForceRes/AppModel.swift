@@ -24,6 +24,9 @@ final class AppModel {
         var virtualID: String
         var preset: ResolutionPreset
         var plan: VirtualDisplayPlan
+        /// The refresh preference the mirror was built for, and the rate it resolved to.
+        var refresh: RefreshPreference
+        var refreshRate: Int
         /// The physical display's pre-mirror snapshot; the mode source while it mirrors, since a
         /// mirrored display reports the master's expanded mode list (docs/RESEARCH.md addendum).
         var physical: DisplayInfo
@@ -382,12 +385,19 @@ final class AppModel {
     }
 
     /// `RefreshControlState` for `display`: the rates it enumerates for the resolution in effect
-    /// (the current mode's family), disabled while it mirrors a virtual display, while a change is
-    /// pending or applying, when the current rate cannot be verified, or when there is nothing
-    /// to choose between.
+    /// (the current mode's family, or the pre-mirror one while it mirrors a virtual display),
+    /// disabled while a change is pending or applying, when the current rate cannot be verified,
+    /// or when there is nothing to choose between.
     func refreshControlState(for display: DisplayInfo) -> RefreshControlState {
-        if activeVirtualMirrors[display.id] != nil {
-            return RefreshControlState(options: [], current: nil, isProMotion: false, isVirtualMirror: true)
+        if let mirror = activeVirtualMirrors[display.id] {
+            let options = ModeSelector.availableRefreshOptions(for: nil, scaling: scaling, in: mirror.physical)
+            // Highest and Variable both build the mirror at the top rate, shown as the top option.
+            let current: RefreshOption = if case .fixed = mirror.refresh { .fixed(hertz: mirror.refreshRate) }
+                                         else { options.first ?? .fixed(hertz: mirror.refreshRate) }
+            return RefreshControlState(options: options, current: current,
+                                       isProMotion: isProMotion(mirror.physical),
+                                       isConfirmationPending: pendingConfirmation != nil,
+                                       isBusy: isBusy)
         }
         return RefreshControlState(options: ModeSelector.availableRefreshOptions(for: nil, scaling: scaling, in: display),
                                    current: ModeSelector.currentRefreshOption(for: display),
@@ -511,8 +521,13 @@ final class AppModel {
             Log.display.notice("Ignoring refresh selection while a change is being applied")
             return
         }
-        guard activeVirtualMirrors[display.id] == nil else {
-            Log.display.notice("Ignoring refresh selection on \(display.name) while it mirrors a virtual display")
+        if let mirror = activeVirtualMirrors[display.id] {
+            guard ModeSelector.virtualRefreshRate(for: refresh, on: mirror.physical) != mirror.refreshRate else { return }
+            do {
+                try applyVirtualMirror(preset: mirror.preset, plan: mirror.plan, refresh: refresh, to: display)
+            } catch {
+                report(error, context: "Changing \(display.name)")
+            }
             return
         }
         guard display.currentMode != nil else {
@@ -708,7 +723,7 @@ final class AppModel {
             guard isVirtualSupported else { return false }
             recordOriginalModeIfNeeded(for: display, trustSavedChoice: true)
             Log.virtual.info("Reconcile: \(display.name) → \(preset.title) via virtual mirror")
-            try activateVirtualMirror(preset: preset, plan: plan, on: display)
+            try activateVirtualMirror(preset: preset, plan: plan, refresh: choice.refresh, on: display)
             refresh()
             return true
         case .unavailable:
@@ -796,6 +811,7 @@ final class AppModel {
                     if !final, displays.contains(where: { $0.id == displayID }) {
                         Log.virtual.info("Revert: recreating virtual mirror on \(displayID)")
                         try activateVirtualMirror(preset: previousMirror.preset, plan: previousMirror.plan,
+                                                  refresh: previousMirror.refresh,
                                                   on: previousMirror.physical)
                     }
                 } else if let previousModeID {
@@ -816,7 +832,9 @@ final class AppModel {
     /// The virtual-mirror route `select` takes for `.needsVirtualDisplay`: creates the virtual
     /// display, mirrors `display` onto it, and starts the confirmation countdown. Internal so the
     /// live integration suite can drive it on a display whose presets are all natively available.
-    func applyVirtualMirror(preset: ResolutionPreset, plan: VirtualDisplayPlan, to display: DisplayInfo) throws {
+    /// `requested` overrides the display's saved refresh preference (the refresh control passes it).
+    func applyVirtualMirror(preset: ResolutionPreset, plan: VirtualDisplayPlan, refresh requested: RefreshPreference? = nil,
+                            to display: DisplayInfo) throws {
         guard isVirtualSupported else {
             Log.virtual.notice("Virtual displays unsupported; ignoring \(preset.title) on \(display.name)")
             return
@@ -828,21 +846,21 @@ final class AppModel {
         recordOriginalModeIfNeeded(for: display)
         let previousMirror = activeVirtualMirrors[display.id]
         if previousMirror != nil { teardownVirtualMirror(for: display.id) }
-        try activateVirtualMirror(preset: preset, plan: plan, on: display)
+        let displayID = display.id
+        let choice = DisplayChoice(preset: preset, scaling: scaling, refresh: requested ?? savedRefresh(for: displayID))
+        try activateVirtualMirror(preset: preset, plan: plan, refresh: choice.refresh, on: display)
         refresh()
 
-        let displayID = display.id
-        // The rate preference rides along (a mirror runs at 60 Hz regardless) so it survives a
-        // later move back to a native preset.
-        let choice = DisplayChoice(preset: preset, scaling: scaling, refresh: savedRefresh(for: displayID))
         startConfirmation(PendingChange(
             displayID: displayID,
-            description: ChangeDescription.virtualMirror(display: display, preset: preset, plan: plan),
+            description: ChangeDescription.virtualMirror(display: display, preset: preset, plan: plan,
+                                                         hertz: activeVirtualMirrors[displayID]?.refreshRate ?? 60),
             revert: { [weak self] final in
                 guard let self else { return }
                 teardownVirtualMirror(for: displayID)
                 if !final, let previousMirror, displays.contains(where: { $0.id == displayID }) {
                     try activateVirtualMirror(preset: previousMirror.preset, plan: previousMirror.plan,
+                                                  refresh: previousMirror.refresh,
                                               on: previousMirror.physical)
                 }
                 // No mode is applied: macOS restores the panel's previous mode itself once it
@@ -858,13 +876,15 @@ final class AppModel {
 
     /// Creates the virtual display and makes `display` mirror it (virtual = master). On any
     /// failure the virtual display is destroyed before the error propagates.
-    private func activateVirtualMirror(preset: ResolutionPreset, plan: VirtualDisplayPlan, on display: DisplayInfo) throws {
+    private func activateVirtualMirror(preset: ResolutionPreset, plan: VirtualDisplayPlan, refresh: RefreshPreference,
+                                       on display: DisplayInfo) throws {
         guard let virtualProvider else {
             throw DisplayError.virtualDisplayUnsupported(missingSymbols: [])
         }
-        Log.virtual.info("Create virtual display \(plan.pixelSize.description) hiDPI=\(plan.hiDPI) for \(display.name)")
+        let rate = ModeSelector.virtualRefreshRate(for: refresh, on: display)
+        Log.virtual.info("Create virtual display \(plan.pixelSize.description) hiDPI=\(plan.hiDPI) \(rate) Hz for \(display.name)")
         let virtualID = try virtualProvider.create(name: "ForceRes \(preset.title)", pixelSize: plan.pixelSize,
-                                                   hiDPI: plan.hiDPI, physicalDisplayID: display.id)
+                                                   hiDPI: plan.hiDPI, refreshRate: rate, physicalDisplayID: display.id)
         do {
             try service.setMirror(physicalDisplayID: display.id, ofVirtualMasterID: virtualID)
         } catch {
@@ -873,7 +893,7 @@ final class AppModel {
             throw error
         }
         activeVirtualMirrors[display.id] = ActiveVirtualMirror(virtualID: virtualID, preset: preset, plan: plan,
-                                                               physical: display)
+                                                               refresh: refresh, refreshRate: rate, physical: display)
         Log.virtual.info("\(display.name) now mirrors virtual \(virtualID)")
     }
 

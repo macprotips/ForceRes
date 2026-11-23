@@ -59,14 +59,14 @@ do {
         pixelHeight: UInt32(clamping: request.height),
         additionalModeSizes: extraModes,
         hiDPI: request.hiDPI,
-        refreshRate: 60,
+        refreshRate: Double(request.refreshRate),
         sizeInMillimeters: CGSize(width: request.millimetersWidth, height: request.millimetersHeight))
 } catch {
     failBeforePublishing("could not create the virtual display: \(error.localizedDescription)")
 }
 
 let displayID = bridge.displayID
-log.info("created display \(displayID) \(request.width)x\(request.height) hiDPI=\(request.hiDPI); waiting for it to come online")
+log.info("created display \(displayID) \(request.width)x\(request.height) hiDPI=\(request.hiDPI) \(request.refreshRate) Hz; waiting for it to come online")
 
 let onlineDeadline = Date().addingTimeInterval(3)
 var online = false

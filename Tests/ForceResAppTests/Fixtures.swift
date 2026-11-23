@@ -13,6 +13,8 @@ enum Fixtures {
         case m1MacBookAir = "m1-macbook-air-builtin"
         /// Synthetic 1080p-native external monitor with no HiDPI 1080p variant.
         case external1080p = "external-1080p-60hz"
+        /// Real dump: 14-inch MacBook Pro (M3) built-in ProMotion panel, 132 modes.
+        case m3MacBookPro14 = "m3-macbook-pro-14-promotion"
     }
 
     enum Error: Swift.Error { case noDisplays(String) }

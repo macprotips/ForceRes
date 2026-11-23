@@ -25,14 +25,9 @@ enum ChangeDescription {
         }
     }
 
-    /// "MacBook Air → 1080p (1920 × 1080) virtual, 60 Hertz, letterboxed".
-    static func virtualMirror(display: DisplayInfo, preset: ResolutionPreset, plan: VirtualDisplayPlan) -> String {
-        "\(display.name) → \(preset.detailedTitle) \(virtualSuffix(plan))"
-    }
-
-    /// "virtual, 60 Hertz[, letterboxed][, beyond panel]", shared by the menu label and the panel.
-    static func virtualSuffix(_ plan: VirtualDisplayPlan) -> String {
-        var text = "virtual, \(Units.hertz(60))"
+    /// "MacBook Air → 1080p (1920 × 1080) virtual, 120 Hertz, letterboxed".
+    static func virtualMirror(display: DisplayInfo, preset: ResolutionPreset, plan: VirtualDisplayPlan, hertz: Int) -> String {
+        var text = "\(display.name) → \(preset.detailedTitle) virtual, \(Units.hertz(hertz))"
         if plan.letterboxed { text += ", letterboxed" }
         if plan.exceedsPanel { text += ", beyond panel" }
         return text

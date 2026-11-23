@@ -6,7 +6,7 @@ import ForceResDisplay
 protocol VirtualDisplayProviding: Sendable {
     /// Creates a virtual display and returns its UUID string. See `VirtualDisplayController.create`.
     @discardableResult
-    func create(name: String, pixelSize: PixelSize, hiDPI: Bool, physicalDisplayID: String) throws -> String
+    func create(name: String, pixelSize: PixelSize, hiDPI: Bool, refreshRate: Int, physicalDisplayID: String) throws -> String
     /// Releases one virtual display (dissolving mirrors that target it). Unknown ids are ignored.
     func destroy(displayID: String)
     /// Releases every virtual display owned by this provider.

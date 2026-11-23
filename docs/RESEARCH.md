@@ -186,11 +186,12 @@ Measured with a standalone Objective-C probe and then through `forceres-vdhost`.
 
 - A `CGVirtualDisplay` created with `CGVirtualDisplayMode(width:height:refreshRate:)` runs at exactly that rate. Tested 60, 120, 144, 165, 240, 360 and 480 Hz, 1x and HiDPI (3840x2160 backing): `CGDisplayModeGetRefreshRate` reports the rate and a `CVDisplayLink` on the virtual display ticks at it (120.5, 144.5, 240.5, 360.0, 481.0 ticks/s). 59.94 is listed as 60.
 - Mirroring the Odyssey onto a 240 Hz HiDPI 1080p virtual master: the Odyssey runs 1920x1080 HiDPI @240 (id 267 in the mirror-expanded list) and the master's display link ticks 240/s. With a 60 Hz master the Odyssey still reports @240 and its own link ticks 240/s, but the master ticks 60/s. The physical scan-out never drops; what a slow virtual display caps is how often macOS draws it, which the panel then repeats. The rate the user sees is the virtual display's rate.
-- Hence `VirtualDisplayPlan.refreshRate`: the panel's highest rate at its native pixel size (`ModeSelector.virtualRefreshRates`), or the saved fixed rate when the panel lists it. Rates offered only at small 4:3 sizes (70/72/75 Hz on the Odyssey) are left out. The helper takes `--hz` and reports the rate it got; the app rebuilds the virtual display to change it.
+- Hence `ModeSelector.virtualRefreshRate`: the saved fixed rate when the panel lists it at its current size, else the panel's highest rate there. Taking the current size's family leaves out rates offered only at small 4:3 sizes (70/72/75 Hz on the Odyssey). The helper takes `--hz`; the app rebuilds the virtual display to change it.
 - Faster than the panel's own scan-out buys nothing; the helper's accepted range (1...1000 Hz) only rejects nonsense.
 - A HiDPI virtual size whose 2x backing exceeds the display pipe cap is quietly run at 1x instead of refused (section 14); the settled mode is checked after every sharp build.
 - `CGVirtualDisplaySettings` on macOS 27 also has `refreshDeadline` (default 0, `CGVirtualDisplaySettingsRefreshDeadlineNone`) and `isReference`; neither is set.
-- **Not yet measured:** a MacBook built-in panel mirroring a 120 Hz virtual master (whether a ProMotion panel scans out at 120 or drops to a fixed timing), and battery cost.
+- **MacBook ProMotion panel (measured 2026-11-23, 14" MacBook Pro M3, macOS 27.0.1):** mirroring a 1080p HiDPI virtual master, the panel reports 1920x1080 @120 and its display link ticks 120/s whether the master runs at 120 or 60 Hz. The master ticks 119.5/s at 120 Hz and 59.5/s at 60 Hz, so as on the Odyssey the virtual display's rate is the one the user sees. `forceres-dev virtual --hz N` reproduces it.
+- **Not yet measured:** battery cost of a 120 Hz virtual master.
 
 ## 14. Custom sizes and the display pipe cap (measured 2026-10-26)
 

@@ -10,6 +10,7 @@ final class FakeVirtualDisplayProvider: VirtualDisplayProviding, Sendable {
         var name: String
         var pixelSize: PixelSize
         var hiDPI: Bool
+        var refreshRate: Int
         var physicalDisplayID: String
     }
 
@@ -33,13 +34,13 @@ final class FakeVirtualDisplayProvider: VirtualDisplayProviding, Sendable {
         set { state.withLock { $0.failure = newValue } }
     }
 
-    func create(name: String, pixelSize: PixelSize, hiDPI: Bool, physicalDisplayID: String) throws -> String {
+    func create(name: String, pixelSize: PixelSize, hiDPI: Bool, refreshRate: Int, physicalDisplayID: String) throws -> String {
         try state.withLock { s in
             if let failure = s.failure { throw failure }
             s.counter += 1
             let id = String(format: "VIRTUAL00-0000-0000-0000-%012d", s.counter)
             s.created.append(Created(id: id, name: name, pixelSize: pixelSize, hiDPI: hiDPI,
-                                     physicalDisplayID: physicalDisplayID))
+                                     refreshRate: refreshRate, physicalDisplayID: physicalDisplayID))
             s.alive.append(id)
             return id
         }

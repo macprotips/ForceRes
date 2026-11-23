@@ -452,3 +452,17 @@ struct RefreshCodingTests {
         #expect(again.displays.first?.variableRefreshRange == 48...240)
     }
 }
+
+@Suite("Virtual display refresh rate")
+struct VirtualRefreshRateTests {
+    let macBookPro = try! FixtureLoader.display(.m3MacBookPro14)
+
+    @Test func followsTheRefreshPreference() {
+        #expect(ModeSelector.virtualRefreshRate(for: .highest, on: macBookPro) == 120)
+        #expect(ModeSelector.virtualRefreshRate(for: .variable, on: macBookPro) == 120)
+        #expect(ModeSelector.virtualRefreshRate(for: .fixed(hertz: 60), on: macBookPro) == 60)
+        #expect(ModeSelector.virtualRefreshRate(for: .fixed(hertz: 48), on: macBookPro) == 48)
+        // A rate the panel does not list falls back to its highest.
+        #expect(ModeSelector.virtualRefreshRate(for: .fixed(hertz: 240), on: macBookPro) == 120)
+    }
+}

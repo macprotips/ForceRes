@@ -3,7 +3,7 @@
 //
 //   forceres-dev list
 //   forceres-dev apply <displayUUID|main> <modeID> [--hold 8] [--keep] [--permanent]
-//   forceres-dev virtual <WxH> [--hidpi] [--mirror <displayUUID|main>] [--hold 8] [--keep] [--pre]
+//   forceres-dev virtual <WxH> [--hidpi] [--hz 60] [--mirror <displayUUID|main>] [--hold 8] [--keep] [--pre]
 //                        [--observe] [--refresh] [--apply-first <modeID>] [--unmirror-wait S]
 //
 // `virtual --keep` holds until SIGINT (Ctrl-C), which runs the same teardown as the timed hold.
@@ -116,8 +116,9 @@ case "virtual":
     let previousModeOfTarget = try mirrorTarget.flatMap { try service.currentModeID(for: $0) }
     print("online displays before: \(baseline)")
     let t0 = Date()
+    let hz = Int(option("--hz", args) ?? "") ?? 60
     let uuid = try controller.create(name: "ForceRes \(size)\(hiDPI ? " HiDPI" : "")", pixelSize: size, hiDPI: hiDPI,
-                                     physicalDisplayID: mirrorTarget ?? "")
+                                     refreshRate: hz, physicalDisplayID: mirrorTarget ?? "")
     print("created \(uuid) in \(String(format: "%.2f", Date().timeIntervalSince(t0)))s; warnings: \(controller.lastWarnings)")
     describe(uuid)
     // Modes of a virtual display are never visible from this process (docs/RESEARCH.md, addendum):

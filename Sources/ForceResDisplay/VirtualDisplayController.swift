@@ -94,14 +94,14 @@ public final class VirtualDisplayController: Sendable {
     }
 
     /// The helper request for a preset size. Pure; used by `create` and by tests.
-    static func request(name: String, pixelSize: PixelSize, hiDPI: Bool) -> VirtualDisplayHostProtocol.Request {
+    static func request(name: String, pixelSize: PixelSize, hiDPI: Bool, refreshRate: Int = 60) -> VirtualDisplayHostProtocol.Request {
         let backing = backingSize(for: pixelSize, hiDPI: hiDPI)
         let identity = identity(for: pixelSize, hiDPI: hiDPI)
         let mm = sizeInMillimeters(for: pixelSize, hiDPI: hiDPI)
         return VirtualDisplayHostProtocol.Request(
             width: backing.width, height: backing.height, hiDPI: hiDPI, name: name,
             vendorID: vendorID, productID: identity.productID, serialNumber: identity.serialNumber,
-            millimetersWidth: Int(mm.width), millimetersHeight: Int(mm.height))
+            millimetersWidth: Int(mm.width), millimetersHeight: Int(mm.height), refreshRate: refreshRate)
     }
 
     /// The helper executable this controller will launch.
@@ -129,11 +129,12 @@ public final class VirtualDisplayController: Sendable {
     ///   diagnostics; the mirror itself is set by the caller through the `DisplayService`).
     /// - Returns: the new display's UUID string.
     @discardableResult
-    public func create(name: String, pixelSize: PixelSize, hiDPI: Bool, physicalDisplayID: String) throws -> String {
+    public func create(name: String, pixelSize: PixelSize, hiDPI: Bool, refreshRate: Int = 60,
+                       physicalDisplayID: String) throws -> String {
         let support = Self.isSupported
         guard support.0 else { throw DisplayError.virtualDisplayUnsupported(missingSymbols: support.missingSymbols) }
         let executable = try helperURL()
-        let request = Self.request(name: name, pixelSize: pixelSize, hiDPI: hiDPI)
+        let request = Self.request(name: name, pixelSize: pixelSize, hiDPI: hiDPI, refreshRate: refreshRate)
 
         let helper = HelperProcess(executable: executable, arguments: request.arguments)
         // Installed before launch so an exit at any later point reaches `forget`; the uuid is
