@@ -1,6 +1,8 @@
 # ForceRes
 
-A menu bar app for setting a Mac display to 720p, 1080p, 1440p or 4K.
+A menu bar app that runs a MacBook's built-in display at 720p, 1080p, 1440p or 4K.
+
+macOS only offers a MacBook screen a few scaled sizes, none of them a standard resolution. ForceRes sets an exact one, which is useful for screen recording, streaming, presenting and games. It works on external displays too.
 
 <img src="docs/panel.png" width="420" alt="The ForceRes panel">
 
